@@ -5,6 +5,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 export const handle = async ({ event, resolve }) => {
+	console.log(event)
 	if (
 		process.env.NODE_ENV !== 'development' &&
 		event.request.headers.get('x-forwarded-proto') === 'http'
