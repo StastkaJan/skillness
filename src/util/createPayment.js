@@ -33,7 +33,7 @@ export const createPaymentUrl = async (user = {}, amount = 0, url) => {
 
 	await setPayment(
 		uid,
-		user.id || 0,
+		user?.id || 0,
 		date.toISOString().replace('T', ' ').replace(/\..+/, ''),
 		'W',
 		amount
@@ -60,8 +60,8 @@ export const createPaymentUrl = async (user = {}, amount = 0, url) => {
 				save_authorization: false,
 				language_code: 'cs',
 				customer: {
-					name: user.name,
-					email: user.email
+					name: user?.name,
+					email: user?.email
 				}
 			})
 		}

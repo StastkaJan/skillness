@@ -8,8 +8,8 @@ export const load = async ({ locals, url }) => {
 		text: url.searchParams.get('text')
 	}
 
-	let payments = await getUserPayment(locals.user.id)
-	let balance = await getBalance(locals.user.id)
+	let payments = await getUserPayment(locals?.user?.id)
+	let balance = await getBalance(locals?.user?.id)
 	let paymentChage = false
 
 	payments.forEach(async item => {
@@ -30,7 +30,7 @@ export const load = async ({ locals, url }) => {
 	})
 
 	if (paymentChage) {
-		payments = await getUserPayment(locals.user.id)
+		payments = await getUserPayment(locals?.user?.id)
 		balance = await getBalance(locals?.user?.id)
 	}
 
@@ -57,7 +57,7 @@ export const actions = {
 		}
 
 		try {
-			let res = await createPaymentUrl(locals.user, amount, url)
+			let res = await createPaymentUrl(locals?.user, amount, url)
 
 			if (res.pay_url) {
 				let returnObj = {
