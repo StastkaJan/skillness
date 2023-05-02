@@ -20,9 +20,9 @@ export const handle = async ({ event, resolve }) => {
 		throw redirect(307, '/')
 	}
 
-	event.locals.user = null
+	event.locals.user = {}
 
-	if (user.email && user.ip === event.getClientAddress()) {
+	if (user.email) {
 		event.locals.user = {
 			id: user.id,
 			email: user.email,

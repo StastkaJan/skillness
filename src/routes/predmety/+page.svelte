@@ -30,21 +30,7 @@
 
 	<div class="subjects">
 		{#each data?.subjects as subject}
-			{#if search.length <= 0 || subject.name
-					.toLowerCase()
-					.normalize('NFD')
-					.replace(/[\u0300-\u036f]/g, '')
-					.match(search
-							.toLowerCase()
-							.normalize('NFD')
-							.replace(/[\u0300-\u036f]/g, '')) || subject.description
-					.toLowerCase()
-					.normalize('NFD')
-					.replace(/[\u0300-\u036f]/g, '')
-					.match(search
-							.toLowerCase()
-							.normalize('NFD')
-							.replace(/[\u0300-\u036f]/g, ''))}
+			{#if search.length <= 0}
 				<a href="/doucujici?subject={subject.id}">
 					<h3>{subject.name}</h3>
 					<p>{subject.description}</p>
