@@ -41,21 +41,17 @@ export class DBConnectionPool {
 			ssl: {
 				rejectUnauthorized: false
 			},
-			max: 1
+			max: 2
 		})
 	}
 
 	async query(sql = '', data = ['']) {
-		let client = await this.sql.connect()
-
 		try {
-			const res = await client.query(sql, data)
+			const res = await this.sql.query(sql, data)
 			return res
 		} catch (err) {
 			console.log(err)
 			throw err
-		} finally {
-			client.release()
 		}
 	}
 }

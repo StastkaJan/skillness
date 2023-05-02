@@ -49,11 +49,11 @@ export const handle = async ({ event, resolve }) => {
 	)
 	response.headers.set('Cross-Origin-Resource-Policy', '(same-site|same-origin|cross-origin)')
 
-	if (event.url.pathname.startsWith('/font')) {
-		response.headers.set('Cache-Control', 'max-age=604800, must-revalidate')
-	} else {
-		response.headers.set('Cache-Control', 'max-age=1800, must-revalidate')
-	}
+	// if (event.url.pathname.startsWith('/font')) {
+	// 	response.headers.set('Cache-Control', 'max-age=604800, must-revalidate')
+	// } else {
+	// 	response.headers.set('Cache-Control', 'max-age=1800, must-revalidate')
+	// }
 
 	return response
 }

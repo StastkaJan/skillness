@@ -26,7 +26,7 @@ const config = {
 				'script-src': ['strict-dynamic'],
 				'require-trusted-types-for': ['script'],
 				'style-src': ['self', 'https://fonts.googleapis.com'],
-				'img-src': ['self', 'data:', 'https://gate.thepay.cz'],
+				'img-src': ['self', 'data:', 'https://gate.thepay.cz', 'https://upload.wikimedia.org'],
 				'frame-ancestors': ['self'],
 				'base-uri': ['self'],
 				'form-action': ['self'],

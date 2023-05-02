@@ -8,7 +8,7 @@
 
 	let amount
 
-	if (data.returnObj.text) {
+	if ($page.data.returnObj.text) {
 		$notification = {
 			text: data.returnObj.text,
 			type: data.returnObj.result
@@ -27,6 +27,9 @@
 				return res.json()
 			})
 			.then(res => {
+				if (res.type === 'redirect') {
+					goto(resJson.location)
+				}
 				$notification = {
 					text: res.text,
 					type: res.result
@@ -42,7 +45,6 @@
 
 	function handleResult(result) {
 		$loading = false
-		console.log(result)
 		$notification = {
 			text: result.data.text,
 			type: result.data.result

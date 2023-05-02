@@ -1,6 +1,6 @@
 <script>
 	import { page } from '$app/stores'
-	import { invalidateAll } from '$app/navigation'
+	import { invalidateAll, goto } from '$app/navigation'
 	import { enhance } from '$app/forms'
 	import { notification, loading } from '$store/clientStore.js'
 	import TeachingTile from './teachingTile.svelte'
@@ -39,6 +39,10 @@
 			})
 			let resJson = await res.json()
 
+			if (resJson.type === 'redirect') {
+				goto(resJson.location)
+			}
+
 			searchResults = resJson.content
 			found = true
 		} catch (err) {
@@ -75,6 +79,10 @@
 				body: JSON.stringify({ teaching: teaching.id })
 			})
 			let resJson = await res.json()
+
+			if (resJson.type === 'redirect') {
+				goto(resJson.location)
+			}
 
 			if (resJson.result === 'error') {
 				error = resJson.text

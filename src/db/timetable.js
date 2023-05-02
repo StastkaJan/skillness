@@ -8,9 +8,29 @@ export const getTimetable = async (teacherId = 0) => {
 	try {
 		const res = await db.query(
 			`
-      SELECT start
+      SELECT start, id
         FROM ${dbName}
         WHERE teacher = $1
+      `,
+			[teacherId]
+		)
+		return res?.rows
+	} catch (err) {
+		console.log(err)
+		throw err
+	}
+}
+
+export const getTimetableDate = async (teacherId = 0) => {
+	let db = new DBConnection()
+
+	try {
+		const res = await db.query(
+			`
+      SELECT start, id
+        FROM ${dbName}
+        WHERE teacher = $1
+					AND start > CURRENT_TIMESTAMP
       `,
 			[teacherId]
 		)
@@ -25,9 +45,8 @@ export const setTimetable = async (teacher = 0, teaching = []) => {
 	let db = new DBConnectionPool()
 
 	try {
-		let res
 		teaching.forEach(async ({ start }) => {
-			res = await db.query(
+			let res = await db.query(
 				`
       	INSERT INTO
         	${dbName} (teacher,start)
@@ -37,25 +56,26 @@ export const setTimetable = async (teacher = 0, teaching = []) => {
 				[teacher, start]
 			)
 		})
-		return res?.rows
 	} catch (err) {
 		console.log(err)
 		throw err
 	}
 }
 
-export const deleteTimetable = async (teacher = 0) => {
-	let db = new DBConnection()
+export const deleteTimetable = async (teacher = 0, teaching = []) => {
+	let db = new DBConnectionPool()
 
 	try {
-		let res = await db.query(
-			`
+		teaching.forEach(async ({ id }) => {
+			let res = await db.query(
+				`
 			DELETE FROM ${dbName}
         WHERE teacher = $1
+					AND id = $2
       `,
-			[teacher]
-		)
-		return res?.rows
+				[teacher, id]
+			)
+		})
 	} catch (err) {
 		console.log(err)
 		throw err

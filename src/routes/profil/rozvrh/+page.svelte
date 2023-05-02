@@ -1,17 +1,22 @@
 <script>
+	import { goto } from '$app/navigation'
 	import { page } from '$app/stores'
 	import { notification, loading } from '$store/clientStore.js'
 
-	let timetable = $page.data.timetable || [],
+	let timetable = $page.data.timetable,
 		daysOffset = 0
 
+	let curr = new Date()
+	curr.setHours(22, 0, 0, 0)
+	let tomorrow = new Date(curr.setDate(curr.getDay() + 1))
+
 	const days = () => {
-		let curr = new Date()
-		if (daysOffset > 0) {
-			curr.setDate(daysOffset)
-		}
 		let daysArr = []
 		for (let i = 0; i < 6 + 1; i++) {
+			let curr = new Date()
+			if (daysOffset > 0) {
+				curr.setDate(daysOffset)
+			}
 			let first = curr.getDate() - curr.getDay() + 1 + i
 			let date = new Date(curr.setDate(first))
 			daysArr.push({ day: date, times: times(i) })
@@ -20,12 +25,12 @@
 	}
 
 	const times = (day = 0) => {
-		let curr = new Date()
-		if (daysOffset > 0) {
-			curr.setDate(daysOffset)
-		}
 		let timesArr = []
 		for (let i = 0; i < 12 + 1; i++) {
+			let curr = new Date()
+			if (daysOffset > 0) {
+				curr.setDate(daysOffset)
+			}
 			curr.setHours(8 + i, 0, 0, 0)
 			let first = curr.getDate() - curr.getDay() + 1 + day
 			let date = new Date(curr.setDate(first))
@@ -55,6 +60,10 @@
 			})
 			let resJson = await res.json()
 
+			if (resJson.type === 'redirect') {
+				goto(resJson.location)
+			}
+
 			$notification = {
 				text: resJson.text,
 				type: resJson.result
@@ -67,7 +76,9 @@
 	}
 
 	function click(time) {
-		console.log(time)
+		if (time.time < tomorrow) {
+			return
+		}
 		time.selected = !time.selected
 		dateArr = dateArr
 		if (time.selected) {
@@ -130,7 +141,7 @@
 				</thead>
 				<tbody>
 					{#each dateArr as { day, times }}
-						<tr>
+						<tr class:invalid={times[0].time < tomorrow}>
 							<th
 								>{day.toLocaleString('cs-CZ', {
 									weekday: 'short',
@@ -209,6 +220,15 @@
 	}
 	tr > th:first-of-type {
 		width: 80px;
+	}
+	tr.invalid {
+		background: #eee;
+	}
+	tr.invalid td {
+		cursor: default;
+	}
+	tr.invalid .highlight {
+		background: rgba(95, 31, 105, 0.5);
 	}
 	td {
 		cursor: pointer;
