@@ -16,6 +16,8 @@ export const handle = async ({ event, resolve }) => {
 
 	let user = await verifyToken(token.split(' ')[1], process.env.JWT_TOKEN)
 
+	console.log(user)
+
 	if (event.url.pathname.startsWith('/profil') && !user?.email) {
 		throw redirect(307, '/')
 	}
@@ -35,7 +37,6 @@ export const handle = async ({ event, resolve }) => {
 
 	const response = await resolve(event)
 
-	response.headers.set('AuthorizationToken', token)
 	response.headers.set('X-Frame-Options', 'SAMEORIGIN')
 	response.headers.set('X-Content-Type-Options', 'nosniff')
 	response.headers.set('X-Xss-Protection', '1; mode=block')
