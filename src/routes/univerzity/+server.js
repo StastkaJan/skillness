@@ -1,18 +1,13 @@
-import { getTimetable, deleteTimetable, setTimetable } from '$db/timetable'
+import { getUniFaculties } from '$db/faculty'
 
-export const POST = async ({ request, locals }) => {
-	let timetable = await request.json()
-	console.log(timetable)
-
+export const GET = async ({ url }) => {
 	try {
-		await deleteTimetable(locals.user.id)
-
-		await setTimetable(locals.user.id, timetable)
+		let faculty = await getUniFaculties(url.searchParams.get('uni'))
 
 		let status = 200
 		let returnObj = {
 			result: 'success',
-			text: 'Úspěšně uloženo'
+			faculty
 		}
 		return new Response(JSON.stringify(returnObj), { status })
 	} catch (err) {

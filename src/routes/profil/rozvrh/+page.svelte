@@ -1,39 +1,49 @@
 <script>
-	import { notification } from '$store/clientStore.js'
+	import { page } from '$app/stores'
+	import { notification, loading } from '$store/clientStore.js'
 
-	export let data
+	let timetable = $page.data.timetable || [],
+		daysOffset = 0
 
-	let timetable = data.timetable
-
-	const days = (start = 1, duration = 6) => {
+	const days = () => {
 		let curr = new Date()
+		if (daysOffset > 0) {
+			curr.setDate(daysOffset)
+		}
 		let daysArr = []
-		for (let i = 0; i < duration + 1; i++) {
+		for (let i = 0; i < 6 + 1; i++) {
 			let first = curr.getDate() - curr.getDay() + 1 + i
 			let date = new Date(curr.setDate(first))
-			daysArr.push({ day: date, times: times() })
+			daysArr.push({ day: date, times: times(i) })
 		}
 		return daysArr
 	}
 
-	const times = (start = 8, duration = 12) => {
+	const times = (day = 0) => {
 		let curr = new Date()
+		if (daysOffset > 0) {
+			curr.setDate(daysOffset)
+		}
 		let timesArr = []
-		for (let i = 0; i < duration + 1; i++) {
-			curr.setHours(start + i, 0, 0)
-			let first = curr.getDate() - curr.getDay() + 1
+		for (let i = 0; i < 12 + 1; i++) {
+			curr.setHours(8 + i, 0, 0, 0)
+			let first = curr.getDate() - curr.getDay() + 1 + day
 			let date = new Date(curr.setDate(first))
-			timesArr.push({ time: date, selected: false })
+			let selected = false
+			timetable.forEach(e => {
+				if (new Date(e.start) - date < 100 && date - new Date(e.start) < 100) {
+					selected = true
+				}
+			})
+			timesArr.push({ time: date, selected })
 		}
 		return timesArr
 	}
 
-	let dateArr = days(),
-		select = []
-
-	select = timetable
+	let dateArr = days()
 
 	async function save() {
+		$loading = true
 		try {
 			let res = await fetch('/profil/rozvrh', {
 				method: 'POST',
@@ -41,24 +51,52 @@
 					'Content-Type': 'application/json',
 					accept: 'application/json'
 				},
-				body: JSON.stringify(select)
+				body: JSON.stringify(timetable)
 			})
-			let resJson = (await res.json()).body
-			if (resJson.result === 'error') {
-				console.log(resJson.text)
-			} else if (resJson.result === 'success') {
-				notification.set({
-					text: resJson.text,
-					type: resJson.result
-				})
+			let resJson = await res.json()
+
+			$notification = {
+				text: resJson.text,
+				type: resJson.result
 			}
 		} catch (err) {
 			console.log(err)
+		} finally {
+			$loading = false
 		}
 	}
 
 	function click(time) {
+		console.log(time)
 		time.selected = !time.selected
+		dateArr = dateArr
+		if (time.selected) {
+			let find = timetable.find(
+				e => new Date(e.start) - time.time < 100 && time.time - new Date(e.start) < 100
+			)
+			if (!find) {
+				timetable.push({ start: time.time })
+			}
+		} else {
+			timetable.forEach((e, i) => {
+				if (new Date(e.start) - time.time < 100 && time.time - new Date(e.start) < 100) {
+					timetable.splice(i, 1)
+				}
+			})
+		}
+		timetable = timetable
+	}
+
+	function nextWeek() {
+		daysOffset = daysOffset + 7
+		dateArr = days()
+		dateArr = dateArr
+	}
+
+	function previousWeek() {
+		if (daysOffset < 7) return
+		daysOffset = daysOffset - 7
+		dateArr = days()
 		dateArr = dateArr
 	}
 </script>
@@ -67,7 +105,7 @@
 	<title>Čas doučování | Profil | Skillnes</title>
 </svelte:head>
 
-<div class="container editable">
+<div class="container">
 	<div>
 		<h1>Čas doučování</h1>
 		<p>
@@ -78,38 +116,50 @@
 	</div>
 
 	<div>
-		<table>
-			<thead>
-				<tr>
-					<th />
-					{#each dateArr[0].times as { time }}
-						<th>
-							{time.getHours()}:00
-						</th>
-					{/each}
-				</tr>
-			</thead>
-			<tbody>
-				{#each dateArr as { day, times }}
+		<div class="table">
+			<table>
+				<thead>
 					<tr>
-						<th>{day.toLocaleString('cs-CZ', { month: '2-digit', day: '2-digit' })}</th>
-						{#each times as time}
-							<td
-								class:highlight={time.selected}
-								on:click={() => {
-									click(time)
-								}}
-								on:keypress={() => {
-									click(time)
-								}}
-							/>
+						<th />
+						{#each dateArr[0].times as { time }}
+							<th>
+								{time.getHours()}:00
+							</th>
 						{/each}
 					</tr>
-				{/each}
-			</tbody>
-		</table>
+				</thead>
+				<tbody>
+					{#each dateArr as { day, times }}
+						<tr>
+							<th
+								>{day.toLocaleString('cs-CZ', {
+									weekday: 'short',
+									month: '2-digit',
+									day: '2-digit'
+								})}</th
+							>
+							{#each times as time}
+								<td
+									class:highlight={time.selected}
+									on:click={() => {
+										click(time)
+									}}
+									on:keypress={() => {
+										click(time)
+									}}
+								/>
+							{/each}
+						</tr>
+					{/each}
+				</tbody>
+			</table>
+		</div>
 
-		<button on:click={save}>Uložit</button>
+		<div class="buttons">
+			<button class:hide={daysOffset < 7} on:click={previousWeek}>Předchozí týden</button>
+			<button on:click={nextWeek}>Následující týden</button>
+		</div>
+		<button class="button" on:click={save}>Uložit</button>
 	</div>
 </div>
 
@@ -128,10 +178,9 @@
 	div.container > div:first-of-type {
 		text-align: center;
 	}
-	button {
+	button.button {
 		width: 100%;
 		height: 40px;
-		margin: 0;
 		color: #fff;
 		font-weight: bold;
 		background: #6537a7;
@@ -167,11 +216,18 @@
 	.highlight {
 		background: #5f1f69;
 	}
+	div.buttons {
+		display: flex;
+		justify-content: space-between;
+	}
+	div.buttons .hide {
+		visibility: hidden;
+	}
 	button {
 		margin-top: 20px;
 	}
 	@media (max-width: 800px) {
-		div.container > div {
+		div.container div.table {
 			max-width: 97vw;
 			overflow: auto;
 		}

@@ -1,4 +1,4 @@
-import { DBConnection } from './dbConnect'
+import { DBConnection, DBConnectionPool } from './dbConnect'
 
 let dbName = 'timetable'
 
@@ -8,9 +8,9 @@ export const getTimetable = async (teacherId = 0) => {
 	try {
 		const res = await db.query(
 			`
-      SELECT day, start, end, repeating
+      SELECT start
         FROM ${dbName}
-        WHERE teacher = $1 AND active = 'T'
+        WHERE teacher = $1
       `,
 			[teacherId]
 		)
@@ -21,25 +21,22 @@ export const getTimetable = async (teacherId = 0) => {
 	}
 }
 
-export const setTimetable = async (
-	teacher = 0,
-	day = new Date().toISOString().replace('T', ' ').replace(/\..+/, ''),
-	start = new Date().toISOString().replace('T', ' ').replace(/\..+/, ''),
-	end = new Date().toISOString().replace('T', ' ').replace(/\..+/, ''),
-	repeating = 'T'
-) => {
-	let db = new DBConnection()
+export const setTimetable = async (teacher = 0, teaching = []) => {
+	let db = new DBConnectionPool()
 
 	try {
-		let res = await db.query(
-			`
-      INSERT INTO
-        ${dbName} (teacher, day, start, end, repeating)
-        VALUES ($1, $2, $3, $4, $5)
-        RETURNING id
-      `,
-			[teacher, day, start, end, repeating]
-		)
+		let res
+		teaching.forEach(async ({ start }) => {
+			res = await db.query(
+				`
+      	INSERT INTO
+        	${dbName} (teacher,start)
+        	VALUES ($1, $2)
+        	RETURNING id
+      	`,
+				[teacher, start]
+			)
+		})
 		return res?.rows
 	} catch (err) {
 		console.log(err)
@@ -47,18 +44,16 @@ export const setTimetable = async (
 	}
 }
 
-export const deactivateTimetable = async (timetableId = 0, active = 'F') => {
+export const deleteTimetable = async (teacher = 0) => {
 	let db = new DBConnection()
 
 	try {
 		let res = await db.query(
 			`
-      UPDATE ${dbName}
-        SET active = $2
-        WHERE id = $1
-        RETURNING id
+			DELETE FROM ${dbName}
+        WHERE teacher = $1
       `,
-			[timetableId, active]
+			[teacher]
 		)
 		return res?.rows
 	} catch (err) {

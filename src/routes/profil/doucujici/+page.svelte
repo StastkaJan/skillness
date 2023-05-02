@@ -72,6 +72,10 @@
 			Nastavit si profil doučujícího a nabízej doučování v předmětu, v kterém jsi jednička. Můžeš
 			tak získat kredity, za které se můžeš přiučit v tebou zvoleném předmětu.
 		</p>
+		<p>
+			Pro zobrazení v seznamu doučujících je následně potřeba nastavit alespoň jeden doučovaný
+			předmět.
+		</p>
 	</div>
 
 	<form

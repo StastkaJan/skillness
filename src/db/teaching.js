@@ -83,17 +83,18 @@ export const setTeaching = async (subject = 0, teacher = 0, price = 0) => {
 	}
 }
 
-export const updateTeaching = async (subject = 0, teacher = 0, price = 0) => {
+export const updateTeaching = async (id = 0, subject = 0, teacher = 0, price = 0) => {
 	let db = new DBConnection()
 
 	try {
 		let res = await db.query(
 			`
       UPDATE ${dbName}
-				SET subject = $1, teacher = $2, price = $3
+				SET subject = $2, teacher = $3, price = $4
+				WHERE id = $1
         RETURNING id
       `,
-			[subject, teacher, price]
+			[id, subject, teacher, price]
 		)
 		return res?.rows
 	} catch (err) {

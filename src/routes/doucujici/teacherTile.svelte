@@ -13,7 +13,7 @@
 		maximumFractionDigits: 0
 	}).format(price)
 
-	let value = 3
+	let value = String(4.5).replace(/\./, '')
 </script>
 
 <div class="teacherTile">
@@ -24,7 +24,7 @@
 	{/if}
 	<div>
 		<h3>{name}</h3>
-		<input class="rating" max="5" step="0.5" type="range" style="--value: {value}" />
+		<input class="rating r{value}" max="5" step="0.5" type="range" />
 		<p>{price}/hod.</p>
 	</div>
 	<p>{bio}</p>
@@ -59,6 +59,39 @@
 	input,
 	input::-webkit-slider-thumb {
 		-webkit-appearance: none;
+	}
+	input.r0 {
+		--value: 0;
+	}
+	input.r05 {
+		--value: 0.5;
+	}
+	input.r1 {
+		--value: 1;
+	}
+	input.r2 {
+		--value: 2;
+	}
+	input.r3 {
+		--value: 3;
+	}
+	input.r4 {
+		--value: 4;
+	}
+	input.r5 {
+		--value: 5;
+	}
+	input.r15 {
+		--value: 1.5;
+	}
+	input.r25 {
+		--value: 2.5;
+	}
+	input.r35 {
+		--value: 3.5;
+	}
+	input.r45 {
+		--value: 4.5;
 	}
 	input {
 		--star: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.25l-6.188 3.75 1.641-7.031-5.438-4.734 7.172-0.609 2.813-6.609 2.813 6.609 7.172 0.609-5.438 4.734 1.641 7.031z"/></svg>');

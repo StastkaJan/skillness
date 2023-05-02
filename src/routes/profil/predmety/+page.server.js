@@ -55,7 +55,7 @@ export const actions = {
 			let teaching = await getTeachingSubject(locals.user.id, subjectId)
 
 			if (teaching.length > 0 && teaching[0].teacher) {
-				await updateTeaching(subjectId, locals.user.id, price)
+				await updateTeaching(teaching[0].id, subjectId, locals.user.id, price)
 
 				let returnObj = {
 					result: 'success',

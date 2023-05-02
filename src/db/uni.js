@@ -8,7 +8,7 @@ export const getUnis = async () => {
 	try {
 		const res = await db.query(
 			`
-      SELECT name, shortname, logo
+      SELECT id, name, shortname, logo
         FROM ${dbName}
       `,
 			[]

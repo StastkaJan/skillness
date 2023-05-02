@@ -22,11 +22,7 @@ export const handle = async ({ event, resolve }) => {
 
 	event.locals.user = null
 
-	console.log(user)
-	console.log(user.ip)
-	console.log(event.getClientAddress())
-
-	if (user.email) {
+	if (user.email && user.ip === event.getClientAddress()) {
 		event.locals.user = {
 			id: user.id,
 			email: user.email,

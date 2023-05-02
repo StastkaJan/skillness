@@ -1,14 +1,12 @@
 <script>
-	import { onDestroy, onMount } from 'svelte'
+	import { onDestroy } from 'svelte'
 	import placeholder from '$img/placeholder.png'
 	import { notification, loading, popup, headerBg } from '$store/clientStore.js'
 	import FacultiesList from './facultiesList.svelte'
 
 	export let data = {}
 
-	onMount(() => {
-		$headerBg = true
-	})
+	$headerBg = true
 
 	onDestroy(() => {
 		$headerBg = false
@@ -26,13 +24,13 @@
 		$loading = true
 
 		try {
-			let res = await fetch(`/schools/faculty?uni=${uni}`)
+			let res = await fetch(`/univerzity?uni=${uni}`)
 			let resJson = await res.json()
 
 			if (resJson.result === 'error') {
 				$notification = {
-					text: 'Došlo k chybě serveru, zkus to později.',
-					type: 'error'
+					text: resJson.text,
+					type: resJson.result
 				}
 			} else if (resJson.result === 'success') {
 				$popup = {
@@ -44,13 +42,13 @@
 				}
 			}
 		} catch (err) {
-			$notification = {
-				text: 'Došlo k chybě serveru, zkus to později.',
-				type: 'error'
-			}
 			console.log(err)
+			$notification = {
+				text: resJson.text,
+				type: resJson.result
+			}
 		} finally {
-			loading.set(false)
+			$loading = false
 		}
 	}
 </script>

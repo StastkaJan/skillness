@@ -45,7 +45,7 @@
 							.toLowerCase()
 							.normalize('NFD')
 							.replace(/[\u0300-\u036f]/g, ''))}
-				<a href="/teachers?sbjid={subject.id}">
+				<a href="/doucujici?subject={subject.id}">
 					<h3>{subject.name}</h3>
 					<p>{subject.description}</p>
 				</a>

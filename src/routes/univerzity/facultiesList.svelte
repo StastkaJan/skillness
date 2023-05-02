@@ -19,7 +19,7 @@
 
 <div>
 	{#each faculties as { id, name }}
-		<a href="/univerzity?fakulta={id}" on:click={destroy}>{name}</a>
+		<a href="/predmety?faculty={id}" on:click={destroy}>{name}</a>
 	{/each}
 </div>
 
