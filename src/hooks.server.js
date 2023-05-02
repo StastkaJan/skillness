@@ -31,6 +31,8 @@ export const handle = async ({ event, resolve }) => {
 		}
 	}
 
+	console.log(event?.locals?.user)
+
 	const response = await resolve(event)
 
 	response.headers.set('AuthorizationToken', token)
