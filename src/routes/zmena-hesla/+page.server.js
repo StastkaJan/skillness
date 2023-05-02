@@ -94,7 +94,7 @@ export const actions = {
 				user?.name,
 				Boolean(teach[0]?.site),
 				tokenDuration,
-				getClientAddress()
+				await getClientAddress()
 			)
 
 			cookies.set('AuthorizationToken', `Bearer ${token}`, {

@@ -68,7 +68,7 @@ export const POST = async ({ request, cookies, getClientAddress }) => {
 
 		let tokenDuration = 60 * 60
 
-		let token = jwtToken(resDB[0]?.id, email, name, false, tokenDuration, getClientAddress())
+		let token = jwtToken(resDB[0]?.id, email, name, false, tokenDuration, await getClientAddress())
 
 		cookies.set('AuthorizationToken', `Bearer ${token}`, {
 			path: '/',

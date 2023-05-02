@@ -66,7 +66,7 @@ export const POST = async ({ request, cookies, getClientAddress }) => {
 				user?.name,
 				Boolean(teach[0]?.site),
 				tokenDuration,
-				getClientAddress()
+				await getClientAddress()
 			)
 
 			cookies.set('AuthorizationToken', `Bearer ${token}`, {
