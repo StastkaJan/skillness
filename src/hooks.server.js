@@ -16,15 +16,13 @@ export const handle = async ({ event, resolve }) => {
 
 	let user = await verifyToken(token.split(' ')[1], process.env.JWT_TOKEN)
 
-	console.log(user)
-
 	if (event.url.pathname.startsWith('/profil') && !user?.email) {
 		throw redirect(307, '/')
 	}
 
 	event.locals.user = null
 
-	if (user.email && user.ip === event.getClientAddress()) {
+	if (user.email) {
 		event.locals.user = {
 			id: user.id,
 			email: user.email,
@@ -32,8 +30,6 @@ export const handle = async ({ event, resolve }) => {
 			isTeacher: user.isTeacher || false
 		}
 	}
-
-	console.log(event?.locals?.user)
 
 	const response = await resolve(event)
 
