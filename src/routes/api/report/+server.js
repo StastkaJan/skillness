@@ -1,5 +1,5 @@
 import { setReport } from '$db/report'
-import { emailVal, bioVal } from '$val/validate'
+import { emailVal, bioVal } from '$util/validate'
 
 export const POST = async ({ request }) => {
 	let { email, text } = await request.json()
