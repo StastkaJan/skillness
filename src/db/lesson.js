@@ -44,7 +44,7 @@ export const getTeacherLessons = async (teacherId = 0) => {
 	}
 }
 
-export const setLesson = async (
+export const insertLesson = async (
 	userId = 0,
 	teacherId = 0,
 	timetableId = 0,
