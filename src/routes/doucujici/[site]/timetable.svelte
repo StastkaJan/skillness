@@ -1,10 +1,8 @@
 <script>
-	import { goto } from '$app/navigation'
-	import { page } from '$app/stores'
-	import { notification, loading } from '$store/clientStore.js'
+	export let timetable = timetable,
+		selectedTime = {}
 
-	let timetable = $page.data.timetable,
-		daysOffset = 0
+	let daysOffset = 0
 
 	let curr = new Date()
 	curr.setHours(22, 0, 0, 0)
@@ -47,54 +45,13 @@
 
 	let dateArr = days()
 
-	async function save() {
-		$loading = true
-		try {
-			let res = await fetch('/profil/rozvrh', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-					accept: 'application/json'
-				},
-				body: JSON.stringify(timetable)
-			})
-			let resJson = await res.json()
-
-			if (resJson.type === 'redirect') {
-				goto(resJson.location)
-			}
-
-			$notification = {
-				text: resJson.text,
-				type: resJson.result
-			}
-		} catch (err) {
-			console.log(err)
-		} finally {
-			$loading = false
-		}
-	}
-
 	function click(time) {
 		if (time.time < tomorrow) {
 			return
 		}
-		time.selected = !time.selected
-		dateArr = dateArr
-		if (time.selected) {
-			let find = timetable.find(
-				e => new Date(e.start) - time.time < 100 && time.time - new Date(e.start) < 100
-			)
-			if (!find) {
-				timetable.push({ start: time.time })
-			}
-		} else {
-			timetable.forEach((e, i) => {
-				if (new Date(e.start) - time.time < 100 && time.time - new Date(e.start) < 100) {
-					timetable.splice(i, 1)
-				}
-			})
-		}
+		console.log(time)
+		time.selectedTime = true
+		selectedTime = time
 		timetable = timetable
 	}
 
@@ -105,25 +62,17 @@
 	}
 
 	function previousWeek() {
-		if (daysOffset < 1) return
+		if (daysOffset < 7) return
 		daysOffset = daysOffset - 7
 		dateArr = days()
 		dateArr = dateArr
 	}
 </script>
 
-<svelte:head>
-	<title>Čas doučování | Profil | Skillnes</title>
-</svelte:head>
-
 <div class="container">
 	<div>
-		<h1>Čas doučování</h1>
-		<p>
-			Nastav si volný čas, během kterého můžešš doučovat. Stačí kliknout na okénko, kdy máš volný
-			čas. Políčko vždy značí začátek hodiny v označeném čase (sloupec 10:00 značí hodinu od 10:00
-			do 11:00).
-		</p>
+		<h2>Čas doučování</h2>
+		<p>Vyber si kdy máš čas k doučování z časových možností učitele.</p>
 	</div>
 
 	<div>
@@ -152,6 +101,7 @@
 							{#each times as time}
 								<td
 									class:highlight={time.selected}
+									class:selected={time.selectedTime || false}
 									on:click={() => {
 										click(time)
 									}}
@@ -167,10 +117,9 @@
 		</div>
 
 		<div class="buttons">
-			<button class:hide={daysOffset < 1} on:click={previousWeek}>Předchozí týden</button>
+			<button class:hide={daysOffset < 7} on:click={previousWeek}>Předchozí týden</button>
 			<button on:click={nextWeek}>Následující týden</button>
 		</div>
-		<button class="button" on:click={save}>Uložit</button>
 	</div>
 </div>
 
@@ -188,16 +137,6 @@
 	}
 	div.container > div:first-of-type {
 		text-align: center;
-	}
-	button.button {
-		width: 100%;
-		height: 40px;
-		color: #fff;
-		font-weight: bold;
-		background: #6537a7;
-		border: none;
-		border-radius: 10px;
-		outline: none;
 	}
 	table,
 	th,
@@ -234,6 +173,9 @@
 		cursor: pointer;
 	}
 	.highlight {
+		background: #5f1f693f;
+	}
+	.selected {
 		background: #5f1f69;
 	}
 	div.buttons {

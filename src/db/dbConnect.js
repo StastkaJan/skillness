@@ -27,7 +27,7 @@ export class DBConnection {
 			console.log(err)
 			throw err
 		} finally {
-			this.sql.end()
+			await this.sql.end()
 		}
 	}
 }

@@ -27,7 +27,7 @@ export const POST = async ({ request, locals }) => {
 	})
 
 	try {
-		await deleteTimetable(locals.user.id, toDelete)
+		await deleteTimetable(toDelete)
 		await setTimetable(locals.user.id, toSet)
 
 		let status = 200

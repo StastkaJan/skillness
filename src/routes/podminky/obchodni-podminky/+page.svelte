@@ -2,10 +2,10 @@
 	import { headerBg } from '$store/clientStore.js'
 	import { onDestroy } from 'svelte'
 
-	$headerBg = true
+	$headerBg = false
 
 	onDestroy(() => {
-		$headerBg = false
+		$headerBg = true
 	})
 </script>
 

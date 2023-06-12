@@ -112,7 +112,7 @@ export const getTeacherSite = async (site = '') => {
 	try {
 		let res = await db.query(
 			`
-      SELECT name, bio, img, ${dbName}.id, email
+      SELECT name, bio, img, ${dbName}.id, email, location
 				FROM ${dbName}
         	INNER JOIN  public."user" ON ${dbName}.id = public."user".id
         WHERE ${dbName}.site = $1
