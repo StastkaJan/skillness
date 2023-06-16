@@ -80,8 +80,9 @@
 	:global(body) {
 		margin: 0;
 	}
-	:global(p) {
-		max-width: 500px;
+	:global(p),
+	:global(details) {
+		max-width: 700px;
 		margin: 1em auto;
 	}
 	:global(a),
