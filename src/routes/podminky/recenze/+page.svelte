@@ -9,6 +9,15 @@
 	})
 </script>
 
+<svelte:head>
+	<title>Pravidla recenzí | Skillnes</title>
+	<meta
+		name="description"
+		content="Přehled pravidel recenzí a odpovědnosti na portálu Skillnes. Seznámte se s důležitými informacemi a zabezpečte si svá práva při využívání našich služeb."
+	/>
+	<meta name="keywords" content="Skillnes, SKillnes.cz, Recenze, Pravidla recenzí" />
+</svelte:head>
+
 <div>
 	<h1>Pravidla pro psaní uživatelských recenzí</h1>
 	<ol>

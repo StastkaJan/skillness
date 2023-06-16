@@ -87,6 +87,11 @@
 	}
 </script>
 
+<svelte:head>
+	<title>Změna hesla</title>
+	<meta name="robots" content="noindex,nofollow" />
+</svelte:head>
+
 <div class="container">
 	<div>
 		<h1>Obnovení hesla</h1>

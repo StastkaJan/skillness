@@ -24,6 +24,12 @@
 
 <svelte:head>
 	<title>Skillnes</title>
+	<meta
+		name="description"
+		content="Skillnes nabízí platformu pro doučování od studentů pro studenty. Student si tak může najít
+		doučujícího, který přesně ví, jak studenta na předmět připravit a jaké znalosti mu předat."
+	/>
+	<meta name="keywords" content="Skillnes, SKillnes.cz, Doučování, Vysoká škola" />
 </svelte:head>
 
 <main>

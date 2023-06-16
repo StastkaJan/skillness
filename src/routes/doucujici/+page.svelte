@@ -33,6 +33,11 @@
 
 <svelte:head>
 	<title>Přehled doučujících | Skillnes</title>
+	<meta
+		name="description"
+		content="Přehled všech doučujících. Najdi parťáka, který ti pomůže a přihlaš se k na hodinu."
+	/>
+	<meta name="keywords" content="Skillnes, SKillnes.cz, Doučující, Učitelé" />
 </svelte:head>
 
 <main>

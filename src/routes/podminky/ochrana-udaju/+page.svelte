@@ -9,6 +9,15 @@
 	})
 </script>
 
+<svelte:head>
+	<title>Ochrana osobních údajů | Skillnes</title>
+	<meta
+		name="description"
+		content="Ochrana osobních údajů na portálu Skillnes. Seznámte se s důležitými informacemi a zabezpečte si svá práva při využívání našich služeb."
+	/>
+	<meta name="keywords" content="Skillnes, SKillnes.cz, Ochrana osobních údajů, Osobní údaje" />
+</svelte:head>
+
 <div>
 	<h1>Ochrana osobních údajů</h1>
 	<ol>

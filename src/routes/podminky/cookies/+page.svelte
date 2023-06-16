@@ -9,6 +9,15 @@
 	})
 </script>
 
+<svelte:head>
+	<title>Cookies | Skillnes</title>
+	<meta
+		name="description"
+		content="Přehled používaných cookies na portálu Skillnes. Seznámte se s důležitými informacemi a zabezpečte si svá práva při využívání našich služeb."
+	/>
+	<meta name="keywords" content="Skillnes, SKillnes.cz, Cookies, Zásady zpracování cookies" />
+</svelte:head>
+
 <div>
 	<h1>Zásady zpracování cookies</h1>
 	<p>

@@ -17,6 +17,11 @@
 
 <svelte:head>
 	<title>Přehled předmětů | Skillnes</title>
+	<meta
+		name="description"
+		content="Přehled všech předmětů. Najdi předmět, který ti moc nejde. Následně se prokliknutím dostaneš na stránku doučujících a už jsi jen jeden krok od lepších studijních výsledků."
+	/>
+	<meta name="keywords" content="Skillnes, SKillnes.cz, Předměty" />
 </svelte:head>
 
 <main>

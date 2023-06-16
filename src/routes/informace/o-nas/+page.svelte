@@ -1,4 +1,16 @@
+<script>
+	import { headerBg } from '$store/clientStore.js'
+	import { onDestroy } from 'svelte'
+
+	$headerBg = false
+
+	onDestroy(() => {
+		$headerBg = true
+	})
+</script>
+
 <svelte:head>
+	<title>Základní údaje | Profil | Skillnes</title>
 	<meta
 		name="description"
 		content="Skillnes je moderní platforma, která nabízí nový způsob doučování pro studenty vysokých škol.

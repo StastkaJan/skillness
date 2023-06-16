@@ -12,6 +12,15 @@
 	})
 </script>
 
+<svelte:head>
+	<title>Základní údaje | Profil | Skillnes</title>
+	<meta
+		name="description"
+		content="Kontaktujte nás na sociálních sítích, emailem nebo prostřednictvím formuláře. Rádi ti pomůžeme s každým problémem."
+	/>
+	<meta name="keywords" content="Skillnes, SKillnes.cz, Společnost" />
+</svelte:head>
+
 <div class="container">
 	<h1>Kontaktuj nás</h1>
 	<div>

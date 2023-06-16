@@ -66,10 +66,26 @@
 	function moreSubjects() {
 		subjectsOpen = !subjectsOpen
 	}
+
+	function getFirstSentence(text) {
+		// Find the position of the first period (.) or exclamation mark (!)
+		const endOfSentence = text.indexOf('.') !== -1 ? text.indexOf('.') : text.indexOf('!')
+
+		// Extract the first sentence using the substring method
+		const firstSentence = text.substring(0, endOfSentence + 1)
+
+		// Return the first sentence
+		return firstSentence.trim()
+	}
 </script>
 
 <svelte:head>
 	<title>Přehled doučujícího | Skillnes</title>
+	<meta
+		name="description"
+		content="Profilová stránka doučujícího {teacher.name}. {getFirstSentence(teacher.bio)}"
+	/>
+	<meta name="keywords" content="Skillnes, SKillnes.cz, Doučující, {teacher.name}" />
 </svelte:head>
 
 <main>

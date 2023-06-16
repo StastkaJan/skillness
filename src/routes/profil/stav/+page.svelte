@@ -57,7 +57,6 @@
 
 <svelte:head>
 	<title>Stav účtu | Profil | Skillnes</title>
-	<meta name="robots" content="noindex,nofollow" />
 </svelte:head>
 
 <div class="container">

@@ -9,6 +9,15 @@
 	})
 </script>
 
+<svelte:head>
+	<title>Obchodní podmínky | Skillnes</title>
+	<meta
+		name="description"
+		content="Obchodní podmínky na portálu Skillnes. Seznámte se s důležitými informacemi a zabezpečte si svá práva při využívání našich služeb."
+	/>
+	<meta name="keywords" content="Skillnes, SKillnes.cz, Obchodní podmínky" />
+</svelte:head>
+
 <div>
 	<h1>Obchodní podmínky</h1>
 	<h2>Úvodní ustanovení</h2>
@@ -481,7 +490,7 @@
 			jsou pro Uživatele závazné dnem jejich účinnosti Veškeré změny těchto Podmínek nabývají
 			účinnosti dnem jejich zveřejnění na internetové stránce www.skillnes.com. Provozovatel je
 			povinen změnu podmínek vhodným způsobem zveřejnit před nabytím účinnosti změn Podmínek. Tyto
-			Podmínky nabývají účinnosti dne XXX.
+			Podmínky nabývají účinnosti dne 14. 02. 2023.
 		</li>
 	</ol>
 </div>

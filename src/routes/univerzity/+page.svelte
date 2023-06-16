@@ -55,6 +55,11 @@
 
 <svelte:head>
 	<title>Přehled univerzit | Skillnes</title>
+	<meta
+		name="description"
+		content="Přehled všech univerzit na platformě Skillnes. Najdi univerzitu, na které studuješ. Následně stačí najít předmět z fakulty a můžeš se začít vzdělávat."
+	/>
+	<meta name="keywords" content="Skillnes, SKillnes.cz, Předměty" />
 </svelte:head>
 
 <main>
