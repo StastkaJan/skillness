@@ -28,10 +28,11 @@
 <style>
 	div {
 		position: fixed;
-		top: 62px;
-		right: 0;
+		bottom: 50px;
 		left: 0;
+		width: 300px;
 		color: #fff;
+		border-radius: 0 20px 20px 0;
 		z-index: 100;
 	}
 	p {
@@ -39,7 +40,7 @@
 		font-size: 1.2em;
 	}
 	.success {
-		background: green;
+		background: #6537a7;
 	}
 	.error {
 		background: red;

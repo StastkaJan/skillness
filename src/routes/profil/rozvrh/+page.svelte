@@ -8,7 +8,7 @@
 
 	let curr = new Date()
 	curr.setHours(22, 0, 0, 0)
-	let tomorrow = new Date(curr.setDate(curr.getDay() + 1))
+	let tomorrow = new Date(curr.setDate(curr.getDate() + 1))
 
 	const days = () => {
 		let daysArr = []

@@ -280,7 +280,7 @@
 			Provozovatele na odměnu za zprostředkovatelské služby.
 		</li>
 		<li>
-			rovozovatel si vyhrazuje právo blokovat jakékoliv požadavky na doučování v případě, že jde o
+			Provozovatel si vyhrazuje právo blokovat jakékoliv požadavky na doučování v případě, že jde o
 			velký počet požadavků od téže osoby (spam)
 		</li>
 	</ol>
@@ -348,7 +348,7 @@
 			rizika, která by při využívání Skillnes.com mohly vzniknout Uživatelem. Provozovatel si
 			vyhrazuje právo, a to i bez předchozího oznámení, upravovat, měnit nebo inovovat Služby
 			portálu Skillnes.com Provozovatel má právo kdykoliv provést technickou odstávku portálu
-			Skillnes.com, a to i bez jakéhokoliv předchozího upozornění
+			Skillnes.com, a to i bez jakéhokoliv předchozího upozornění.
 		</li>
 		<li>
 			Doučovatelé i Studenti udělují Provozovateli souhlas ve smyslu zákona o elektronickém obchodu

@@ -1,4 +1,5 @@
 import { DBConnection } from './dbConnect'
+import format from 'pg-format'
 
 let dbName = 'timetable'
 
@@ -44,18 +45,23 @@ export const getTimetableDate = async (teacherId = 0) => {
 export const setTimetable = async (teacher = 0, teaching = []) => {
 	let db = new DBConnection()
 
-	let teachingArray = teaching.map(object => object.start)
+	let teachingArray = []
+
+	teaching.map(object => {
+		teachingArray.push([teacher, object.start])
+	})
 
 	try {
-		const res = await db.query(
+		const query = format(
 			`
       	INSERT INTO
         	${dbName} (teacher, start)
-        	VALUES ${insertMultipleRows(teacher, teachingArray)}
+        	VALUES %L
         	RETURNING id
       	`,
-			[]
+			teachingArray
 		)
+		const res = await db.query(query, [])
 		return res?.rows
 	} catch (err) {
 		console.log(err)
@@ -65,29 +71,20 @@ export const setTimetable = async (teacher = 0, teaching = []) => {
 
 export const deleteTimetable = async (teaching = []) => {
 	let db = new DBConnection()
-	let idArray = teaching.map(object => object.id)
+	let idArray = [teaching.map(object => object.id)]
 
 	try {
-		let res = await db.query(
+		const query = format(
 			`
 			DELETE FROM ${dbName}
-	      WHERE id IN ${removeMultipleRows(idArray)}
+	      WHERE id IN %L
 	    `,
-			[]
+			idArray
 		)
+		const res = await db.query(query, [])
 		return res?.rows
 	} catch (err) {
 		console.log(err)
 		throw err
 	}
-}
-
-function insertMultipleRows(teacher, array) {
-	let insertString = array.map(d => '(' + (Number(teacher) || 0) + ",'" + d + "')").join(',')
-	return insertString
-}
-
-function removeMultipleRows(array) {
-	let deleteString = '(' + array.map(d => Number(d) || 0).join(',') + ')'
-	return deleteString
 }

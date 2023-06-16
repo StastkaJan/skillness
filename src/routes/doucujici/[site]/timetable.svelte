@@ -1,6 +1,5 @@
 <script>
-	export let timetable = timetable,
-		selectedTime = {}
+	export let timetable = timetable
 
 	let daysOffset = 0
 
@@ -44,16 +43,6 @@
 	}
 
 	let dateArr = days()
-
-	function click(time) {
-		if (time.time < tomorrow) {
-			return
-		}
-		console.log(time)
-		time.selectedTime = true
-		selectedTime = time
-		timetable = timetable
-	}
 
 	function nextWeek() {
 		daysOffset = daysOffset + 7
@@ -99,16 +88,7 @@
 								})}</th
 							>
 							{#each times as time}
-								<td
-									class:highlight={time.selected}
-									class:selected={time.selectedTime || false}
-									on:click={() => {
-										click(time)
-									}}
-									on:keypress={() => {
-										click(time)
-									}}
-								/>
+								<td class:highlight={time.selected} />
 							{/each}
 						</tr>
 					{/each}
@@ -163,19 +143,10 @@
 	tr.invalid {
 		background: #eee;
 	}
-	tr.invalid td {
-		cursor: default;
-	}
 	tr.invalid .highlight {
-		background: rgba(95, 31, 105, 0.5);
-	}
-	td {
-		cursor: pointer;
+		background: #5f1f69;
 	}
 	.highlight {
-		background: #5f1f693f;
-	}
-	.selected {
 		background: #5f1f69;
 	}
 	div.buttons {

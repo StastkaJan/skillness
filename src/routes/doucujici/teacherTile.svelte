@@ -135,10 +135,10 @@
 		background: #f0f0f0;
 		box-shadow: 0 0 5px 2px #ccc;
 		transition: 0.2s;
-		border-radius: 1em;
+		border-radius: 5px;
 	}
 	a:hover {
 		color: #fff;
-		background: #5f1f69;
+		background: #000;
 	}
 </style>

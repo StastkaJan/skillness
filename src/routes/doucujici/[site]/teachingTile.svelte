@@ -1,23 +1,8 @@
 <script>
-	import { createEventDispatcher } from 'svelte'
-
-	const dispatch = createEventDispatcher()
-
-	export let teach = {},
-		selectedSubject = {}
-
-	function click() {
-		selectedSubject = teach
-		dispatch('click')
-	}
+	export let teach = {}
 </script>
 
-<div
-	class="teacherTile"
-	class:selected={selectedSubject?.subjectid === teach.subjectid}
-	on:click={click}
-	on:keypress={click}
->
+<div class="teacherTile">
 	<h3>
 		{teach.name}
 	</h3>
@@ -43,11 +28,6 @@
 		border-radius: 10px;
 		overflow: hidden;
 		box-shadow: 0 0 10px #ccc;
-		cursor: pointer;
-	}
-	.teacherTile.selected {
-		background: #5f1f69;
-		color: #fff;
 	}
 	h3 {
 		width: 100%;

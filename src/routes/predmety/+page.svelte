@@ -79,6 +79,10 @@
 		width: 350px;
 		padding: 20px;
 		box-shadow: 0 0 10px #ccc;
-		border-radius: 20px;
+		border-radius: 10px;
+		transition: 0.2s;
+	}
+	.subjects > a:hover {
+		box-shadow: inset 0 0 10px #ccc;
 	}
 </style>

@@ -107,9 +107,9 @@
 		margin: 0;
 		color: #fff;
 		font-weight: bold;
-		background: #6537a7;
+		background: #000;
 		border: none;
-		border-radius: 10px;
+		border-radius: 5px;
 		outline: none;
 	}
 	.register {

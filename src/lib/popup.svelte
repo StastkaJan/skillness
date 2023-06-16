@@ -38,7 +38,7 @@
 		max-width: 800px;
 		max-height: 70vh;
 		background: #fff;
-		border-radius: 50px;
+		border-radius: 20px;
 		overflow: auto;
 	}
 	h2 {

@@ -11,10 +11,6 @@
 	let { teacher, timetable, teaching } = data,
 		teachingCount = teaching.length
 
-	console.log(teacher)
-
-	let selectedSubject = {}
-	let selectedTime = {}
 	let subjectsOpen = false
 
 	$headerBg = false
@@ -80,12 +76,18 @@
 	<h1>Profil doučujícího</h1>
 	<div class="container">
 		<div class="profile">
-			{#if teacher.img}
-				<img src={teacher.img} alt="profile" width="150" height="150" />
-			{:else}
-				<img src={placeholder} alt="profile" width="150" height="150" />
-			{/if}
-			<h3>{teacher.name}</h3>
+			<div>
+				{#if teacher.img}
+					<img src={teacher.img} alt="profile" width="150" height="150" />
+				{:else}
+					<img src={placeholder} alt="profile" width="150" height="150" />
+				{/if}
+				<h3>{teacher.name}</h3>
+				<p>
+					<span>{teacher.location}</span><br />
+					<!-- <span>Email: {teacher.email}</span> -->
+				</p>
+			</div>
 		</div>
 		<div class="data">
 			<div>
@@ -95,15 +97,17 @@
 				<h2>Vyučované předměty</h2>
 				<div style={subjectsOpen ? 'max-height:644px;overflow:auto' : 'max-height:322px;'}>
 					{#each teaching as teach, i}
-						<TeachingTile {teach} bind:selectedSubject />
+						<TeachingTile {teach} />
 					{/each}
 				</div>
 				{#if teachingCount > 4}
 					<button on:click={moreSubjects}>Zobrazit více</button>
 				{/if}
 			</div>
-			<Timetable {timetable} title="Volný čas učitele" bind:selectedTime />
-			<button on:click={registerLecture}>Přihlásit se k hodině</button>
+			<!-- <Timetable {timetable} title="Volný čas učitele" /> -->
+			<div>
+				<button on:click={registerLecture}>Přihlásit se k hodině</button>
+			</div>
 		</div>
 	</div>
 </main>
@@ -121,8 +125,8 @@
 		text-align: center;
 	}
 	div.container {
-		display: grid;
-		grid-template-columns: 1fr 2fr;
+		display: flex;
+		gap: 50px;
 	}
 	div > div {
 		padding: 20px;
@@ -132,12 +136,23 @@
 		flex-direction: column;
 		align-items: center;
 	}
+	div.profile div {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		position: sticky;
+		top: 50px;
+		width: 250px;
+		word-break: break-all;
+		box-shadow: 0 0 10px #ccc;
+		border-radius: 20px;
+	}
 	img {
 		max-width: 150px;
 		border-radius: 50%;
 		aspect-ratio: 1;
 	}
-	p {
+	div.data p {
 		width: 100%;
 		max-width: 500px;
 		margin: 30px auto;
@@ -146,6 +161,10 @@
 		display: flex;
 		flex-direction: column;
 		gap: 50px;
+	}
+	.data > div:first-of-type {
+		box-shadow: 0 0 10px #ccc;
+		border-radius: 20px;
 	}
 	.subjects {
 		max-width: 760px;

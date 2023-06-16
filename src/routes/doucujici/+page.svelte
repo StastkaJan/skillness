@@ -49,17 +49,19 @@
 		</div>
 	</section>
 	<section class="tiles">
-		{#each data?.teachers as teacher}
-			<TeacherTile
-				name={teacher.name}
-				bio={teacher.bio}
-				img={teacher.img}
-				site={teacher.site}
-				price={teacher.avg}
-			/>
-		{:else}
-			<p>Nikdo nenalezen</p>
-		{/each}
+		<div>
+			{#each data?.teachers as teacher}
+				<TeacherTile
+					name={teacher.name}
+					bio={teacher.bio}
+					img={teacher.img}
+					site={teacher.site}
+					price={teacher.avg}
+				/>
+			{:else}
+				<p>Nikdo nenalezen</p>
+			{/each}
+		</div>
 	</section>
 </main>
 
@@ -86,5 +88,11 @@
 	}
 	input {
 		padding: 0.7em;
+	}
+	section.tiles > div {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 50px;
+		max-width: 1100px;
 	}
 </style>
