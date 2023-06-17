@@ -20,6 +20,10 @@ export const handle = async ({ event, resolve }) => {
 		throw redirect(307, '/')
 	}
 
+	if (event.url.pathname.startsWith('/admin/') && !user?.admin) {
+		throw redirect(307, '/')
+	}
+
 	event.locals.user = {}
 
 	if (user.email) {
@@ -28,6 +32,13 @@ export const handle = async ({ event, resolve }) => {
 			email: user.email,
 			name: user.name,
 			isTeacher: user.isTeacher || false
+		}
+	}
+
+	if (user.admin) {
+		event.locals.admin = {
+			name: user.name,
+			admin: user.admin
 		}
 	}
 

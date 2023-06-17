@@ -24,3 +24,16 @@ export const jwtToken = (
 	)
 	return token
 }
+
+export const jwtTokenAdmin = (name = '', admin = true, duration = 60 * 60, ip = '') => {
+	let token = jwt.sign(
+		{
+			name,
+			admin,
+			ip
+		},
+		process.env.JWT_TOKEN,
+		{ expiresIn: duration }
+	)
+	return token
+}

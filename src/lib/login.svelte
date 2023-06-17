@@ -66,7 +66,7 @@
 	}}
 >
 	<div>
-		<label for="pasword">E-mail*</label>
+		<label for="email">E-mail*</label>
 		<input name="email" placeholder="Email" required />
 	</div>
 
