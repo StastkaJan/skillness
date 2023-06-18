@@ -1,7 +1,5 @@
 <script>
 	export let id, topic, email, text
-
-	console.log(id, topic, email, text)
 </script>
 
 <div>

@@ -6,6 +6,14 @@ export const nameVal = (name = '') => {
 	return ''
 }
 
+export const shortnameVal = (shortname = '') => {
+	if (shortname.length < 2) {
+		return 'Zkratka je příliš krátká'
+	}
+
+	return ''
+}
+
 export const emailVal = (email = '') => {
 	if (!email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})$/)) {
 		return 'Špatný formát emailu'
@@ -85,6 +93,16 @@ export const priceVal = (price = '') => {
 export const levelVal = (level = '') => {
 	if (level.length < 1) {
 		return 'Zadaná úroveň je neplatná'
+	}
+
+	return ''
+}
+
+export const urlVal = (url = '') => {
+	if (url.length < 1) {
+		return 'Zadaná ulr je příliš krátká'
+	} else if (!url.match(/^https:\/\//)) {
+		return 'URL adesa musí začínat https://'
 	}
 
 	return ''

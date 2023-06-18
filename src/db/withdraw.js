@@ -8,8 +8,9 @@ export const getAll = async () => {
 	try {
 		const res = await db.query(
 			`
-      SELECT *
+      SELECT ${dbName}.id as id, public."user".email as user, sum, account
         FROM ${dbName}
+        JOIN public."user" ON public."user".id = ${dbName}."user"
       `,
 			[]
 		)

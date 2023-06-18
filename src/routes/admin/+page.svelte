@@ -22,7 +22,6 @@
 
 	function handleResult(result) {
 		$loading = false
-		console.log(result)
 		if (result.result === 'error') {
 			error = result.text
 		} else if (result.result === 'success') {

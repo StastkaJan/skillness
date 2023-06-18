@@ -4,7 +4,7 @@
 
 	export let data
 
-	let reports = data?.reports
+	let reports = data?.reports || []
 
 	function showReport({ id, topic, email, text }) {
 		$popup = {
@@ -21,28 +21,33 @@
 
 <div class="container">
 	<h1>Dotazy a připomínky</h1>
-	<p />
+	<p>
+		Níže jsou v tabulce jednotlivé otázky a připomínky. Kliknutím na některý z řádků se zobrazí
+		popup s bližšími detaily.
+	</p>
 	{#if reports[0]?.id}
-		<table>
-			<thead>
-				<tr>
-					<th>ID</th>
-					<th>Topic</th>
-					<th>Email</th>
-					<th>Popis</th>
-				</tr>
-			</thead>
-			<tbody>
-				{#each reports as { id, topic, email, text }}
-					<tr on:click={() => showReport({ id, topic, email, text })}>
-						<td>{id}</td>
-						<td>{topic}</td>
-						<td>{email}</td>
-						<td>{text}</td>
+		<div class="table">
+			<table>
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Topic</th>
+						<th>Email</th>
+						<th>Popis</th>
 					</tr>
-				{/each}
-			</tbody>
-		</table>
+				</thead>
+				<tbody>
+					{#each reports as { id, topic, email, text }}
+						<tr on:click={() => showReport({ id, topic, email, text })}>
+							<td>{id}</td>
+							<td>{topic}</td>
+							<td>{email}</td>
+							<td>{text}</td>
+						</tr>
+					{/each}
+				</tbody>
+			</table>
+		</div>
 	{:else}
 		<p>Žádné dotazy či připomínky k zobrazení</p>
 	{/if}
@@ -56,6 +61,10 @@
 		align-items: center;
 		min-height: 100vh;
 		padding-top: 100px;
+	}
+	div.table {
+		max-width: 100%;
+		overflow: auto;
 	}
 	table,
 	th,
