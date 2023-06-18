@@ -5,9 +5,10 @@
 
 	export let id = 0,
 		name = '',
-		shortname = '',
-		uni = '',
-		unis = []
+		ident = '',
+		faculty = '',
+		description = '',
+		faculties = []
 
 	let error = ''
 
@@ -33,7 +34,7 @@
 
 <div>
 	<form
-		action="?/saveFaculty"
+		action="?/saveSubject"
 		method="POST"
 		use:enhance={() => {
 			$loading = true
@@ -47,20 +48,24 @@
 		{/if}
 		<input type="hidden" name="id" value={id} />
 		<div>
-			<label for="name">Jméno</label>
+			<label for="name">Jméno*</label>
 			<input type="text" name="name" value={name} />
 		</div>
 		<div>
-			<label for="shortname">Zkratka</label>
-			<input type="text" name="shortname" value={shortname} />
+			<label for="ident">Ident</label>
+			<input type="text" name="ident" value={ident} />
 		</div>
 		<div>
-			<label for="uni">Univerzita</label>
-			<select name="uni" id="uni">
-				{#each unis as { name, id }}
-					<option value={id} label={name} selected={name === uni} />
+			<label for="faculty">Fakulta*</label>
+			<select name="faculty" id="faculty">
+				{#each faculties as { name, id }}
+					<option value={id} label={name} selected={name === faculty} />
 				{/each}
 			</select>
+		</div>
+		<div>
+			<label for="description">Popis*</label>
+			<textarea name="description" id="description" cols="30" rows="10" value={description} />
 		</div>
 		{#if error != ''}
 			<p class="error">{error}</p>
@@ -69,7 +74,7 @@
 	</form>
 	{#if id != 0}
 		<form
-			action="?/deleteFaculty"
+			action="?/deleteSubject"
 			method="POST"
 			use:enhance={() => {
 				$loading = true

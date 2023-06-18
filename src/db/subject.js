@@ -20,6 +20,25 @@ export const getAllSubjects = async () => {
 	}
 }
 
+export const getSubjects = async () => {
+	let db = new DBConnection()
+
+	try {
+		const res = await db.query(
+			`
+      SELECT ${dbName}.id as id, ${dbName}.name as name, description, ident, faculty.name as faculty
+        FROM ${dbName}
+				JOIN faculty ON ${dbName}.faculty = faculty.id
+      `,
+			[]
+		)
+		return res?.rows
+	} catch (err) {
+		console.log(err)
+		throw err
+	}
+}
+
 export const getSubject = async (id = 0) => {
 	let db = new DBConnection()
 
@@ -122,7 +141,13 @@ export const setSubject = async (faculty = 0, name = '', description = '', ident
 	}
 }
 
-export const updateSubject = async (faculty = 0, name = '', description = '', ident = '') => {
+export const updateSubject = async (
+	id = 0,
+	faculty = 0,
+	name = '',
+	description = '',
+	ident = ''
+) => {
 	let db = new DBConnection()
 
 	try {
@@ -136,19 +161,37 @@ export const updateSubject = async (faculty = 0, name = '', description = '', id
           WHERE id = $1
           RETURNING id
         `,
-				[faculty, name, description, ident]
+				[id, faculty, name, description, ident]
 			)
 		} else {
 			res = await db.query(
 				`
         UPDATE ${dbName}
-          SET faculty = $2, name = $3, description = $4, ident = $5
+          SET faculty = $2, name = $3, description = $4
           WHERE id = $1
           RETURNING id
         `,
-				[faculty, name, description]
+				[id, faculty, name, description]
 			)
 		}
+		return res?.rows
+	} catch (err) {
+		console.log(err)
+		throw err
+	}
+}
+
+export const deleteSubject = async (id = 0) => {
+	let db = new DBConnection()
+
+	try {
+		const res = await db.query(
+			`
+      DELETE FROM ${dbName}
+				WHERE id = $1
+      `,
+			[id]
+		)
 		return res?.rows
 	} catch (err) {
 		console.log(err)

@@ -107,3 +107,19 @@ export const urlVal = (url = '') => {
 
 	return ''
 }
+
+export const identVal = (ident = '') => {
+	if (ident.length < 3) {
+		return 'Ident je příliš krátký'
+	}
+
+	return ''
+}
+
+export const descriptionVal = (description = '') => {
+	if (description.length < 10) {
+		return 'Popis je příliš krátký'
+	}
+
+	return ''
+}
