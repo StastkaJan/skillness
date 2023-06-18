@@ -1,5 +1,4 @@
 <script>
-	import { invalidateAll } from '$app/navigation'
 	import { popup } from '$store/clientStore.js'
 	import UniPop from './uniPop.svelte'
 
@@ -25,8 +24,8 @@
 <div class="container">
 	<h1>Správa univerzit</h1>
 	<p>
-		Níže jsou v tabulce jednotlivé otázky a připomínky. Kliknutím na některý z řádků se zobrazí
-		popup s bližšími detaily.
+		Níže jsou v tabulce jednotlivé univerzity. Kliknutím na některý z řádků se zobrazí popup s
+		bližšími detaily a dalšími akcemi.
 	</p>
 	<button on:click={editUni}>Nová univerzita</button>
 	{#if unis[0]?.id}

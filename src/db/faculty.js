@@ -2,6 +2,44 @@ import { DBConnection } from './dbConnect'
 
 let dbName = 'faculty'
 
+export const getFaculties = async () => {
+	let db = new DBConnection()
+
+	try {
+		const res = await db.query(
+			`
+      SELECT ${dbName}.name, ${dbName}.shortname, ${dbName}.id, uni.name as uni
+        FROM ${dbName}
+				JOIN uni ON uni.id = ${dbName}.uni
+      `,
+			[]
+		)
+		return res?.rows
+	} catch (err) {
+		console.log(err)
+		throw err
+	}
+}
+
+export const getFaculty = async () => {
+	let db = new DBConnection()
+
+	try {
+		const res = await db.query(
+			`
+      SELECT ${dbName}.name, ${dbName}.shortname, ${dbName}.id, uni.name
+        FROM ${dbName}
+				JOIN uni ON uni.id = ${dbName}.uni
+      `,
+			[]
+		)
+		return res?.rows
+	} catch (err) {
+		console.log(err)
+		throw err
+	}
+}
+
 export const getUniFaculties = async (uniId = 0) => {
 	let db = new DBConnection()
 
@@ -72,6 +110,24 @@ export const updateFaculty = async (facultyId = 0, uniId = 0, name = '', shortna
 				RETURNING id
       `,
 			[facultyId, uniId, name, shortname]
+		)
+		return res?.rows
+	} catch (err) {
+		console.log(err)
+		throw err
+	}
+}
+
+export const deleteFaculty = async (facultyId = 0) => {
+	let db = new DBConnection()
+
+	try {
+		const res = await db.query(
+			`
+      DELETE FROM ${dbName}
+        WHERE id = $1
+      `,
+			[facultyId]
 		)
 		return res?.rows
 	} catch (err) {

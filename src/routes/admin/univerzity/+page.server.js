@@ -17,7 +17,6 @@ export const actions = {
 		let logo = formData.get('logo')
 
 		let validation = {
-			id: '',
 			name: '',
 			shortname: '',
 			logo: ''
