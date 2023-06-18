@@ -12,7 +12,7 @@
 		$popup = {
 			title: 'Úprava uživatele',
 			component: UserPop,
-			props: { id, name, email }
+			props: { id, name, email, active }
 		}
 	}
 </script>

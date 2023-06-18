@@ -46,10 +46,10 @@
 		{#if id != 0}
 			<p>ID: {id}</p>
 		{/if}
-		<input type="hidden" name="id" value={id} />
+		<input type="hidden" name="id" value={id} required />
 		<div>
 			<label for="name">Jméno*</label>
-			<input type="text" name="name" value={name} />
+			<input type="text" name="name" value={name} required />
 		</div>
 		<div>
 			<label for="ident">Ident</label>
@@ -59,13 +59,20 @@
 			<label for="faculty">Fakulta*</label>
 			<select name="faculty" id="faculty">
 				{#each faculties as { name, id }}
-					<option value={id} label={name} selected={name === faculty} />
+					<option value={id} label={name} selected={name === faculty} required />
 				{/each}
 			</select>
 		</div>
 		<div>
 			<label for="description">Popis*</label>
-			<textarea name="description" id="description" cols="30" rows="10" value={description} />
+			<textarea
+				name="description"
+				id="description"
+				cols="30"
+				rows="10"
+				value={description}
+				required
+			/>
 		</div>
 		{#if error != ''}
 			<p class="error">{error}</p>

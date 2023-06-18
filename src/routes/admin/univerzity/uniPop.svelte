@@ -44,18 +44,18 @@
 		{#if id != 0}
 			<p>ID: {id}</p>
 		{/if}
-		<input type="hidden" name="id" value={id} />
+		<input type="hidden" name="id" value={id} required />
 		<div>
-			<label for="name">Jméno</label>
-			<input type="text" name="name" value={name} />
+			<label for="name">Jméno*</label>
+			<input type="text" name="name" value={name} required />
 		</div>
 		<div>
-			<label for="shortname">Zkratka</label>
-			<input type="text" name="shortname" value={shortname} />
+			<label for="shortname">Zkratka*</label>
+			<input type="text" name="shortname" value={shortname} required />
 		</div>
 		<div>
-			<label for="logo">URL loga</label>
-			<input type="text" name="logo" value={logo} />
+			<label for="logo">URL loga*</label>
+			<input type="text" name="logo" value={logo} required />
 		</div>
 		{#if error != ''}
 			<p class="error">{error}</p>

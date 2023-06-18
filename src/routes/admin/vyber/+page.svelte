@@ -4,8 +4,6 @@
 
 	export let data
 
-	console.log(data)
-
 	let withdraw = data?.withdraw || []
 
 	function showWithdraw({ id, user, sum, account }) {
