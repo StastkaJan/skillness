@@ -122,7 +122,9 @@
 	:global(input[type='text']),
 	:global(input[type='password']),
 	:global(textarea) {
-		box-shadow: 0 0 3px inset #ccc;
+		border-bottom: 2px solid #6537a7;
+		border-radius: 0;
+		box-shadow: none;
 	}
 	:global(textarea) {
 		padding: 0.4em;

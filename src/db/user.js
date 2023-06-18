@@ -1,5 +1,24 @@
 import { DBConnection } from './dbConnect'
 
+export const getUsers = async () => {
+	let db = new DBConnection()
+
+	try {
+		const res = await db.query(
+			`
+      SELECT id, email, name, active
+        FROM public."user"
+				ORDER BY id
+      `,
+			[]
+		)
+		return res?.rows
+	} catch (err) {
+		console.log(err)
+		throw err
+	}
+}
+
 export const getUserEmail = async (email = '') => {
 	let db = new DBConnection()
 
@@ -29,6 +48,26 @@ export const getUserId = async (userId = 0) => {
       SELECT id, email, name, password
         FROM public."user"
         WHERE id = $1 AND (active = 'T' OR active = 'W')
+        LIMIT 1
+      `,
+			[userId]
+		)
+		return res?.rows
+	} catch (err) {
+		console.log(err)
+		throw err
+	}
+}
+
+export const getAllUserId = async (userId = 0) => {
+	let db = new DBConnection()
+
+	try {
+		const res = await db.query(
+			`
+      SELECT id, email, name, password
+        FROM public."user"
+        WHERE id = $1
         LIMIT 1
       `,
 			[userId]

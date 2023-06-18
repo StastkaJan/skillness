@@ -10,7 +10,7 @@
 
 	function editFaculty({ id = 0, name = '', shortname = '', uni = '' }) {
 		$popup = {
-			title: 'Úprava univerzity',
+			title: 'Úprava fakulty',
 			component: FacultyPop,
 			props: { id, name, shortname, uni, unis: data.unis }
 		}

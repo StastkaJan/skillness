@@ -123,3 +123,11 @@ export const descriptionVal = (description = '') => {
 
 	return ''
 }
+
+export const activeUserVal = (active = '') => {
+	if (active !== 'T' && active !== 'F' && active !== 'W') {
+		return 'Neplatná hodnota stavu uživatele'
+	}
+
+	return ''
+}

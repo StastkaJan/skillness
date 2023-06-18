@@ -1,31 +1,38 @@
 <script>
-	import Header from './header.svelte'
-	import { navigating } from '$app/stores'
-	import Notification from '$lib/notification.svelte'
-	import Popup from '$lib/popup.svelte'
-	import Loader from '$lib/loader.svelte'
-	import { loading } from '$store/clientStore.js'
+	import { page } from '$app/stores'
+	import { headerBg } from '$store/clientStore.js'
+	import { onDestroy, onMount } from 'svelte'
+	import Header from './(app)/header.svelte'
+	import Footer from './(app)/footer.svelte'
 
-	let notifText = 'Text',
-		notifType = 'success',
-		notifVisible = false
+	onMount(() => {
+		$headerBg = false
+	})
+
+	onDestroy(() => {
+		$headerBg = true
+	})
 </script>
+
+<svelte:head>
+	<title>Došlo k chybě | Skillnes</title>
+	<meta name="robots" content="noindex,nofollow" />
+</svelte:head>
 
 <Header />
 
-<Notification />
+<main>
+	{#if $page.status == 404}
+		<h1>Nenalezeno</h1>
+		<p>{$page.error.message || ''}</p>
+	{:else}
+		<h1>Chyba</h1>
+		<p>{$page.error.message || ''}</p>
+	{/if}
+	<a href="/">Zpět domů</a>
+</main>
 
-<Popup />
-
-{#if $navigating || $loading}
-	<Loader />
-{/if}
-
-<slot />
-
-<svelte:head>
-	<meta name="robots" content="noindex,nofollow" />
-</svelte:head>
+<Footer />
 
 <style>
 	@font-face {
@@ -102,16 +109,13 @@
 		outline: 0;
 	}
 	:global(input),
-	:global(textarea),
-	:global(select) {
+	:global(textarea) {
 		display: block;
 		margin: 5px 0;
 		width: 100%;
 		border: none;
 	}
-	:global(input),
-	:global(select),
-	:global(option) {
+	:global(input) {
 		padding: 0.4em;
 		border-radius: 5px;
 	}
@@ -121,11 +125,8 @@
 	}
 	:global(input[type='text']),
 	:global(input[type='password']),
-	:global(textarea),
-	:global(select) {
-		border-bottom: 2px solid #6537a7;
-		border-radius: 0;
-		box-shadow: none;
+	:global(textarea) {
+		box-shadow: 0 0 3px inset #ccc;
 	}
 	:global(textarea) {
 		padding: 0.4em;
@@ -167,5 +168,22 @@
 		:global(section) {
 			padding: 50px 5vw;
 		}
+	}
+	main {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		margin: 100px 20px;
+	}
+	a,
+	a:visited {
+		display: inline-block;
+		padding: 0.4em 1em;
+		color: #fff;
+		font-size: 1.1em;
+		font-weight: bold;
+		background-color: #000;
+		border-radius: 5px;
 	}
 </style>
