@@ -1,5 +1,8 @@
+import { getAll } from '$db/withdraw'
+
 export const load = async ({ locals }) => {
 	return {
-		user: locals.user
+		reports: await getAll(),
+		admin: locals.admin
 	}
 }

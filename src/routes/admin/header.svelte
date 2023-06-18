@@ -76,7 +76,7 @@
 			<a href="/admin/predmety">Předměty</a>
 			<a href="/admin/uzivatele">Uživatelé</a>
 			<a href="/admin/otazky">Dotazy</a>
-			<a href="/admin/vyber">Požadavky na výběr</a>
+			<a href="/admin/vyber">Výběry</a>
 			<button on:click={logout}>Odhlásit se</button>
 		{:else}
 			<a href="/">Domů</a>

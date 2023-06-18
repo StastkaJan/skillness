@@ -4,6 +4,9 @@ import { jwtTokenAdmin } from '$util/createJwt'
 import { redirect } from '@sveltejs/kit'
 
 export const load = async ({ locals }) => {
+	if (locals.user?.id) {
+		throw redirect(307, '/')
+	}
 	return {
 		admin: locals.admin
 	}
@@ -11,7 +14,7 @@ export const load = async ({ locals }) => {
 
 export const actions = {
 	login: async ({ request, locals, cookies, getClientAddress }) => {
-		if (locals.user.id) {
+		if (locals.admin?.admin) {
 			return {}
 		}
 		let formData = await request.formData()

@@ -7,8 +7,6 @@
 
 	export let data
 
-	console.log(data)
-
 	let error = '',
 		passwordVisible = false,
 		passwordType = 'password'
@@ -41,8 +39,8 @@
 	<title>Admin | Skillnes</title>
 </svelte:head>
 
-{#if !data?.admin?.admin}
-	<div>
+<div class="container">
+	{#if !data?.admin?.admin}
 		<h1>Přihlášení pro admina</h1>
 		<form
 			action="?/login"
@@ -81,12 +79,28 @@
 				<button class="button" type="submit">Přihlásit se</button>
 			</div>
 		</form>
-	</div>
-{:else}
-	you are in
-{/if}
+	{:else}
+		<h1>Přejít do nastavení</h1>
+		<p>Vyber sekci k přidání nového záznamu či úpravě stávajících.</p>
+		<div class="links">
+			<a href="/admin/univerzity">Univerzity</a>
+			<a href="/admin/fakulty">Fakulty</a>
+			<a href="/admin/predmety">Předměty</a>
+			<a href="/admin/uzivatele">Uživatelé</a>
+			<a href="/admin/otazky">Dotazy</a>
+			<a href="/admin/vyber">Výběry</a>
+		</div>
+	{/if}
+</div>
 
 <style>
+	div.container {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		min-height: 100vh;
+	}
 	form {
 		width: 300px;
 	}
@@ -116,5 +130,25 @@
 		right: 0;
 		bottom: 0;
 		background: transparent;
+	}
+	p {
+		padding: 1em;
+	}
+	div.links {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 50px 30px;
+		justify-content: center;
+		margin: 20px 0;
+	}
+	a {
+		display: flex;
+		padding: 1em 2em;
+		border-radius: 10px;
+		box-shadow: 0 0 10px #ccc;
+		transition: 0.2s;
+	}
+	a:hover {
+		box-shadow: inset 0 0 10px #ccc;
 	}
 </style>

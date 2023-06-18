@@ -1,5 +1,8 @@
+import { getAllReports } from '$db/report'
+
 export const load = async ({ locals }) => {
 	return {
-		user: locals.user
+		reports: await getAllReports(),
+		admin: locals.admin
 	}
 }
