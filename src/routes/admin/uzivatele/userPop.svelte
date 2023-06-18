@@ -8,7 +8,8 @@
 	export let id = 0,
 		name = '',
 		email = '',
-		active = ''
+		active = '',
+		sum = 0
 
 	let error = '',
 		passwordVisible = false,
@@ -58,6 +59,12 @@
 			<p>ID: {id}</p>
 		{/if}
 		<input type="hidden" name="id" value={id} required />
+		<p>
+			Stav účtu: {Number(sum || 0).toLocaleString('cs-CZ', {
+				style: 'currency',
+				currency: 'CZK'
+			})}
+		</p>
 		<div>
 			<label for="name">Jméno*</label>
 			<input type="text" name="name" value={name} required />
@@ -67,7 +74,7 @@
 			<input type="text" name="email" value={email} required />
 		</div>
 		<div>
-			<label for="active">Stav*</label>
+			<label for="active">Status*</label>
 			<select name="active" id="active" required>
 				<option value="W" label="Čeká (aktivní)" selected={active === 'W'} />
 				<option value="T" label="Aktivní" selected={active === 'T'} />

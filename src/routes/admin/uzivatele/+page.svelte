@@ -8,11 +8,11 @@
 
 	$: users = data?.users
 
-	function editFaculty({ id, name, email, active }) {
+	function editFaculty({ id, name, email, active, sum }) {
 		$popup = {
 			title: 'Úprava uživatele',
 			component: UserPop,
-			props: { id, name, email, active }
+			props: { id, name, email, active, sum }
 		}
 	}
 </script>
@@ -35,16 +35,23 @@
 						<th>ID</th>
 						<th>Jméno</th>
 						<th>Email</th>
+						<th>Status</th>
 						<th>Stav</th>
 					</tr>
 				</thead>
 				<tbody>
-					{#each users as { id, name, email, active }}
-						<tr on:click={() => editFaculty({ id, name, email, active })}>
+					{#each users as { id, name, email, active, sum }}
+						<tr on:click={() => editFaculty({ id, name, email, active, sum })}>
 							<td>{id}</td>
 							<td>{name}</td>
 							<td>{email}</td>
 							<td>{active === 'W' ? 'Čeká (aktivní)' : active === 'T' ? 'Aktivní' : 'Neaktivní'}</td
+							>
+							<td
+								>{Number(sum || 0).toLocaleString('cs-CZ', {
+									style: 'currency',
+									currency: 'CZK'
+								})}</td
 							>
 						</tr>
 					{/each}

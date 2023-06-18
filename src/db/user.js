@@ -6,8 +6,10 @@ export const getUsers = async () => {
 	try {
 		const res = await db.query(
 			`
-      SELECT id, email, name, active
+      SELECT public."user".id, email, name, active, SUM(sum) as sum
         FROM public."user"
+				LEFT JOIN payment ON payment."user" = public."user".id
+				GROUP BY public."user".id, email, name, active
 				ORDER BY id
       `,
 			[]
