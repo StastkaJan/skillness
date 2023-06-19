@@ -46,8 +46,8 @@ export const getTeacherLessons = async (teacherId = 0) => {
 
 export const insertLesson = async (
 	userId = 0,
-	teacherId = 0,
 	timetableId = 0,
+	teachingId = 0,
 	time = new Date().toISOString().replace('T', ' ').replace(/\..+/, '')
 ) => {
 	let db = new DBConnection()
@@ -56,11 +56,11 @@ export const insertLesson = async (
 		const res = await db.query(
 			`
       INSERT INTO
-        ${dbName} (user, teacher, timetable, time)
+        ${dbName} ("user", timetable, teaching, time)
         VALUES ($1, $2, $3, $4)
         RETURNING id
     	`,
-			[userId, teacherId, timetableId, time]
+			[userId, timetableId, teachingId, time]
 		)
 		return res?.rows
 	} catch (err) {

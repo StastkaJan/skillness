@@ -43,7 +43,7 @@
 			právem Evropské unie nebo členského státu.
 		</li>
 		<li>Správcem Vašich osobních údajů je Tomáš Hampl se sídlem 533 16, Vápno 31, IČO 17556481</li>
-		<li>Aktuální kontaktní údaj: xxx@xxx.com.</li>
+		<li>Aktuální kontaktní údaj: info@skillnes.cz.</li>
 	</ol>
 	<h2>Jaké osobní údaje o Vás zpracováváme</h2>
 	<ol>
@@ -224,7 +224,7 @@
 	<ol>
 		<li>
 			Pokud se chcete zeptat na cokoli ohledně použití vašich osobních údajů z naší strany,
-			kontaktujte nás e-mailem na adrese xxx@xxx.com.
+			kontaktujte nás e-mailem na adrese info@skillnes.cz.
 		</li>
 	</ol>
 </div>

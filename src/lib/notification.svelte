@@ -31,8 +31,11 @@
 		bottom: 50px;
 		left: 0;
 		width: 300px;
+		padding: 20px;
 		color: #fff;
+		font-weight: bold;
 		border-radius: 0 20px 20px 0;
+		box-shadow: 0 0 20px #ccc;
 		z-index: 100;
 	}
 	p {
@@ -40,9 +43,10 @@
 		font-size: 1.2em;
 	}
 	.success {
-		background: #6537a7;
+		background: #341de1;
+		/* background: #6537a7; */
 	}
 	.error {
-		background: red;
+		background: #5f1f69;
 	}
 </style>

@@ -105,13 +105,16 @@
 		outline: 0;
 	}
 	:global(input),
-	:global(textarea) {
+	:global(textarea),
+	:global(select) {
 		display: block;
 		margin: 5px 0;
 		width: 100%;
 		border: none;
 	}
-	:global(input) {
+	:global(input),
+	:global(select),
+	:global(option) {
 		padding: 0.4em;
 		border-radius: 5px;
 	}
@@ -121,7 +124,8 @@
 	}
 	:global(input[type='text']),
 	:global(input[type='password']),
-	:global(textarea) {
+	:global(textarea),
+	:global(select) {
 		border-bottom: 2px solid #6537a7;
 		border-radius: 0;
 		box-shadow: none;
