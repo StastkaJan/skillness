@@ -9,7 +9,7 @@
 
 	export let data
 
-	let { teacher, timetable, teaching, site } = data,
+	let { teacher, timetable = [], teaching, site } = data,
 		teachingCount = teaching.length
 
 	let subjectsOpen = false
@@ -38,7 +38,7 @@
 				type: 'error'
 			}
 			return
-		} else if (timetable && timetable[0]) {
+		} else if (!timetable[0]) {
 			$notification = {
 				text: 'V nejbližší době neprobíhá žádné vyučování',
 				type: 'error'

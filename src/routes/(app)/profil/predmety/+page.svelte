@@ -120,7 +120,10 @@
 <div class="container">
 	<div>
 		<h1>Doučované předměty</h1>
-		<p>Nastav předměty, u kterých chceš nabízet doučování. Stačí zadat jméno a cenu.</p>
+		<p>
+			Nastav předměty, u kterých chceš nabízet doučování. Stačí zadat jméno a cenu. Z každé hodiny
+			se strhne poplatek 5 % na podporu platformy.
+		</p>
 	</div>
 
 	<form

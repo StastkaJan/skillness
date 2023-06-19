@@ -6,40 +6,40 @@
 	let email = '',
 		error = ''
 
-	const resetPass = async () => {
-		try {
-			let res = await fetch('/api/mailer', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-					accept: 'application/json'
-				},
-				body: JSON.stringify({ email })
-			})
-			let resJson = await res.json()
-			resJson = resJson.body
+	// const resetPass = async () => {
+	// 	try {
+	// 		let res = await fetch('/api/mailer', {
+	// 			method: 'POST',
+	// 			headers: {
+	// 				'Content-Type': 'application/json',
+	// 				accept: 'application/json'
+	// 			},
+	// 			body: JSON.stringify({ email })
+	// 		})
+	// 		let resJson = await res.json()
+	// 		resJson = resJson.body
 
-			if (resJson.result === 'error') {
-				error = resJson.text
-			} else if (resJson.result === 'success') {
-				$notification = {
-					text: resJson.text,
-					type: resJson.result
-				}
-				$popup = {
-					title: '',
-					component: null,
-					props: {}
-				}
-			}
-		} catch (err) {
-			console.log(err)
-			$notification = {
-				text: 'Chyba serveru, zkuste to prosím později.',
-				type: 'error'
-			}
-		}
-	}
+	// 		if (resJson.result === 'error') {
+	// 			error = resJson.text
+	// 		} else if (resJson.result === 'success') {
+	// 			$notification = {
+	// 				text: resJson.text,
+	// 				type: resJson.result
+	// 			}
+	// 			$popup = {
+	// 				title: '',
+	// 				component: null,
+	// 				props: {}
+	// 			}
+	// 		}
+	// 	} catch (err) {
+	// 		console.log(err)
+	// 		$notification = {
+	// 			text: 'Chyba serveru, zkuste to prosím později.',
+	// 			type: 'error'
+	// 		}
+	// 	}
+	// }
 
 	function handleResult(result) {
 		$loading = false

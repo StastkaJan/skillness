@@ -53,7 +53,6 @@
 
 	async function registerLecture() {
 		$loading = true
-		console.log(selectedTime)
 		fetch(`/doucujici/${site}`, {
 			method: 'POST',
 			body: JSON.stringify({
@@ -156,6 +155,7 @@
 		padding: 0.5em 1em;
 		border-radius: 5px;
 		background: #eee;
+		cursor: pointer;
 	}
 	div.dates span.button.selected {
 		color: #fff;

@@ -2,6 +2,11 @@ import { getTeacherSite } from '$db/teacher'
 import { getTeaching } from '$db/teaching'
 import { getTimetableById, getTimetableTimes } from '$db/timetable'
 import { insertLesson } from '$db/lesson'
+import { getBalance, setPayment, deletePayment } from '$db/payment'
+import { sendMail } from '$util/mailer'
+if (process.env.NODE_ENV === 'development') {
+	await import('dotenv/config')
+}
 
 export const GET = async ({ request, params, locals, url }) => {
 	try {
@@ -68,7 +73,6 @@ export const GET = async ({ request, params, locals, url }) => {
 
 export const POST = async ({ request, params, locals }) => {
 	let { teaching, timetable } = await request.json()
-	console.log(teaching, timetable)
 
 	try {
 		if (!locals?.user?.id) {
@@ -100,7 +104,6 @@ export const POST = async ({ request, params, locals }) => {
 		}
 
 		let timetableCheck = await getTimetableById(timetable)
-		console.log(timetableCheck)
 		if (!timetableCheck[0]) {
 			let status = 403
 			let returnObj = {
@@ -111,7 +114,6 @@ export const POST = async ({ request, params, locals }) => {
 		}
 
 		let teachingCheck = await getTeaching(teaching)
-		console.log(teachingCheck)
 		if (!teachingCheck[0]) {
 			let status = 403
 			let returnObj = {
@@ -121,13 +123,103 @@ export const POST = async ({ request, params, locals }) => {
 			return new Response(JSON.stringify(returnObj), { status })
 		}
 
-		await insertLesson(locals?.user?.id, timetable, teaching)
+		let balanceCheck = await getBalance(locals?.user?.id)
+		if (Number(balanceCheck[0]?.sum) < teachingCheck[0]?.price) {
+			let status = 403
+			let returnObj = {
+				result: 'error',
+				text: 'Nedostatek kreditů.'
+			}
+			return new Response(JSON.stringify(returnObj), { status })
+		}
+
+		let date = new Date(timetableCheck[0]?.start)
+
+		let payment = await setPayment(
+			'',
+			locals?.user?.id,
+			new Date().toISOString().replace('T', ' ').replace(/\..+/, ''),
+			'T',
+			-teachingCheck[0]?.price
+		)
+
+		if (!payment[0]?.id) {
+			let status = 500
+			let returnObj = {
+				result: 'error',
+				text: 'Chyba při ukládání'
+			}
+
+			return new Response(JSON.stringify(returnObj), { status })
+		}
+
+		let paymentTeacher = await setPayment(
+			'',
+			teacher?.id,
+			new Date(date.setDate(date.getDate() + 7))
+				.toISOString()
+				.replace('T', ' ')
+				.replace(/\..+/, ''),
+			'T',
+			Number(teachingCheck[0]?.price) * (1 - process.env.feePercent / 100)
+		)
+
+		if (!paymentTeacher[0]?.id) {
+			let status = 500
+			let returnObj = {
+				result: 'error',
+				text: 'Chyba při ukládání'
+			}
+
+			await deletePayment(payment[0]?.id)
+
+			return new Response(JSON.stringify(returnObj), { status })
+		}
+
+		let lessonInsert = await insertLesson(locals?.user?.id, timetable, teaching)
+
+		if (!lessonInsert[0]?.id) {
+			let status = 500
+			let returnObj = {
+				result: 'error',
+				text: 'Chyba při ukládání'
+			}
+
+			await deletePayment(payment[0]?.id)
+			await deletePayment(paymentTeacher[0]?.id)
+
+			return new Response(JSON.stringify(returnObj), { status })
+		}
+
+		await sendMail(
+			teacher.email,
+			'Nová přihláška na hodinu | Skillnes',
+			`
+<!DOCTYPE html>
+<html lang="cs">
+  <head></head>
+  <body>
+    <table>
+      <tr>
+        <td align="center">
+          <h1>Nová přihláška na hodinu</h1>
+          <p>
+            Právě ti přišla nová přihláška na hodinu. Přihlaš se a potvrď ji.
+          </p>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
+`
+		)
 
 		let status = 200
 		let returnObj = {
 			result: 'success',
 			text: 'Úspěšně uloženo'
 		}
+
 		return new Response(JSON.stringify(returnObj), { status })
 	} catch (err) {
 		let status = 500

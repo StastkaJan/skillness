@@ -300,11 +300,11 @@
 			za jednu hodinu doučování.
 		</li>
 		<li>
-			Student si zvolí jednu z platebních metod xxx čímž zároveň Provozovateli uděluje souhlas k
+			Student si zvolí jednu z platebních metod čímž zároveň Provozovateli uděluje souhlas k
 			odepsání peněz z účtu.
 		</li>
 		<li>
-			Odměna za doučování se platí před odučenou hodinou, resp. v souladu se storno podmínkami
+			Odměna za doučování se vyplací 7 dní po odučené hodině, resp. v souladu se storno podmínkami
 			dohodnutými mezi Doučovatelem a Studentem.
 		</li>
 		<li>
@@ -329,7 +329,7 @@
 		</li>
 		<li>
 			Odměna za doučování bude Doučovatelovi uhrazena prostřednictvím Provozovatele. Provozovatel
-			účtuje Doučovatelovi za zprostředkování doučování provizi ve výši XXX z odměny Doučovatele.
+			účtuje Doučovatelovi za zprostředkování doučování provizi ve výši 5 % z odměny Doučovatele.
 			Provozovatel vystaví a doručí Doučovatelovi elektronickou fakturu neprodleně po uplatnění
 			nároku na provizi.
 		</li>
@@ -344,9 +344,8 @@
 			daně, vystavení faktur apod.
 		</li>
 		<li>
-			Doučovatel tímto uděluje souhlas s elektronickým zasíláním dokladů (faktur) Provozovatele,
-			které si doučovatel může stáhnout na svém kontě na portálu Skillnes.cz nebo na svém emailu,
-			který Doučovateli zasíláme.
+			Doučovatel tímto uděluje souhlas s elektronickým zasíláním dokladů (faktur) Provozovatele, o
+			které si doučovatel může zažádat emailem.
 		</li>
 	</ol>
 	<h2>Oprávnění Provozovatele</h2>

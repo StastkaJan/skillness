@@ -8,7 +8,7 @@ export const getTeaching = async (teachingId = 0) => {
 	try {
 		const res = await db.query(
 			`
-      SELECT teacher
+      SELECT teacher, price
         FROM ${dbName}
         WHERE id = $1
       `,

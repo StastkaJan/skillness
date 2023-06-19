@@ -34,8 +34,6 @@
 	async function logout() {
 		$loading = true
 		try {
-			goto('/')
-
 			let res = await fetch('/api/logout', {
 				method: 'DELETE'
 			})
@@ -47,9 +45,10 @@
 			}
 		} catch (err) {
 			console.log(err)
+		} finally {
+			$loading = false
 		}
 		invalidateAll()
-		$loading = false
 	}
 </script>
 

@@ -13,7 +13,7 @@ const transporter = nodemailer.createTransport({
 
 export const sendMail = (receiver, subject, content) => {
 	const mailOptions = {
-		from: process.env.gmailname,
+		from: `Skillnes <${process.env.gmailname}>`,
 		to: receiver,
 		subject: subject,
 		html: content

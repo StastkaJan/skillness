@@ -33,7 +33,7 @@ export const POST = async ({ request, url }) => {
 
 		let mailResponse = await sendMail(
 			email,
-			'Obnova hesla',
+			'Obnova hesla | Skillnes',
 			`
 <!DOCTYPE html>
 <html lang="cs">

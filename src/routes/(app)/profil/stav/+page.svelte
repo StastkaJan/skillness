@@ -64,7 +64,8 @@
 		<h1>Stav účtu</h1>
 		<p>
 			Zde vidíš stav účtu s historií přímých plateb i plateb získaných či utracených z doučování.
-			Také zde můžeš přidat kredity na svůj účet.
+			Také zde můžeš přidat kredity na svůj účet. Nárok na kredity za doučování vzniká 7 dnů po jeho
+			datu.
 		</p>
 	</div>
 

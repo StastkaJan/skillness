@@ -11,6 +11,7 @@ export const getUserPayment = async (userId = 0) => {
       SELECT id, timestamp, paid, sum, lesson, payment
         FROM ${dbName}
         WHERE "user" = $1
+					AND "timestamp" < now()
 				ORDER BY timestamp DESC
       `,
 			[userId]
@@ -67,6 +68,7 @@ export const getBalance = async (userId = 0) => {
         FROM ${dbName}
         WHERE "user" = $1
 					AND paid = 'T'
+					AND "timestamp" < now()
       `,
 			[userId]
 		)
@@ -89,11 +91,11 @@ export const setPayment = async (
 		const res = await db.query(
 			`
       INSERT INTO
-        ${dbName} (payment, "user", timestamp, paid, sum)
-        VALUES ($1, $2, $3, $4, $5)
+        ${dbName} ("user", timestamp, paid, sum ${id ? ', payment' : ''})
+        VALUES ($1, $2, $3, $4 ${id ? ', $5' : ''})
         RETURNING id
       `,
-			[id, userId, timestamp, paid, sum]
+			id ? [userId, timestamp, paid, sum, id] : [userId, timestamp, paid, sum]
 		)
 		return res?.rows
 	} catch (err) {
@@ -113,6 +115,23 @@ export const updatePayment = async (id = '', paid = 'W') => {
 				RETURNING id
       `,
 			[id, paid]
+		)
+		return res?.rows
+	} catch (err) {
+		console.log(err)
+	}
+}
+
+export const deletePayment = async (id = '') => {
+	let db = new DBConnection()
+
+	try {
+		const res = await db.query(
+			`
+      DELETE FROM ${dbName}
+        WHERE id = $1
+      `,
+			[id]
 		)
 		return res?.rows
 	} catch (err) {
