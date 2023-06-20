@@ -1,6 +1,6 @@
 import { getTeacherLessons, updateLesson, getLesson } from '$db/lesson'
 import { updatePaymentLesson } from '$db/payment'
-import { sendMail } from '$util/nodemailer'
+import { sendMail } from '$util/mailer'
 
 export const load = async ({ locals }) => {
 	return {

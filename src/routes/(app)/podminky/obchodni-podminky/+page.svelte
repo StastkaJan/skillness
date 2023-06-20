@@ -41,13 +41,10 @@
 			Podmínkami. Podmínky jsou závazné pro všechny Uživatele a vztahují se na každý smluvní vztah
 			mezi Studenty, Doučovateli a Provozovatelem. Veškeré smluvní vztahy jsou uzavřeny v souladu s
 			právním řádem České republiky. V případě, že je smluvní stranou spotřebitel, řídí se vztahy
-			neupravené těmito Podmínkami zákonem č. 40/1964 Sb., Občanského zákoníku v platném znění,
-			zákonem č. 250/2007 Sb., O ochraně spotřebitele, zákonem č. 102/2014 Sb., O ochraně
-			spotřebitele při prodeji zboží nebo poskytování služeb na základě smlouvy uzavřené na dálku
-			nebo smlouvy uzavřené mimo obchodní prostory prodávajícího a o změně některých zákonů, zákonem
-			č. 22/2004 CFU o elektronickém obchodu, všechny v platném znění. V případě, že je smluvní
-			stranou podnikatel, řídí se vztahy neupravené těmito Podmínkami zákonem č. 513/1991 Sb.,
-			Obchodního zákoníku v platném znění.
+			neupravené těmito Podmínkami zákonem č. 89/2012 Sb., Občanského zákoníku v platném znění,
+			zákonem č. 634/1992 Sb., O ochraně spotřebitele. V případě, že je smluvní stranou podnikatel,
+			řídí se vztahy neupravené těmito Podmínkami zákonem č. 513/1991 Sb., Obchodního zákoníku v
+			platném znění.
 		</li>
 		<li>
 			Pro účely těchto Podmínek jsou zde uvedeny významy použitých pojmů:
