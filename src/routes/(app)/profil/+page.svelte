@@ -122,13 +122,13 @@
 		margin: 0;
 		color: #fff;
 		font-weight: bold;
-		background: #6537a7;
+		background: #000;
 		border: none;
-		border-radius: 40px;
+		border-radius: 5px;
 		outline: none;
 	}
 	input {
-		border-bottom: 2px solid #6537a7;
+		border-bottom: 2px solid #000;
 		border-radius: 0;
 		box-shadow: none;
 	}

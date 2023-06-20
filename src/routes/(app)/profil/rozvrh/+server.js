@@ -3,6 +3,21 @@ import { getTimetableDate, deleteTimetable, setTimetable } from '$db/timetable'
 export const POST = async ({ request, locals }) => {
 	let timetable = await request.json()
 
+	let date = new Date()
+
+	// looks for dates that are before tomorrow
+	let wrongDates = timetable.filter(e => {
+		new Date(e.start) > new Date(date.setDate(date.getDate() + 1))
+	})
+	if (wrongDates.length > 0) {
+		let status = 200
+		let returnObj = {
+			result: 'error',
+			text: 'Vloženo neplatné datum'
+		}
+		return new Response(JSON.stringify(returnObj), { status })
+	}
+
 	let timetableDB = await getTimetableDate(locals.user.id)
 	let toSet = timetable.filter(n => {
 		return !timetableDB

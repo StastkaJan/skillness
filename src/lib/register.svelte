@@ -125,7 +125,7 @@
 		font-weight: bold;
 	}
 	input {
-		border-bottom: 2px solid #6537a7;
+		border-bottom: 2px solid #000;
 		border-radius: 0;
 		box-shadow: none;
 	}

@@ -75,6 +75,7 @@ export const getTimetableDates = async (teacherId = 0) => {
 					AND id NOT IN (
 						SELECT timetable 
 							FROM lesson
+							WHERE status NOT LIKE 'F'
 					)
 				ORDER BY start
       `,

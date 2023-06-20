@@ -140,7 +140,7 @@
 						<td>
 							{#if paid == 'T'}
 								Zaplaceno
-							{:else if new Date(Number(new Date(timestamp)) + 12096e5) <= new Date()}
+							{:else if new Date(Number(new Date(timestamp)) + 12096e5) <= new Date() || paid == 'F'}
 								Platba neproběhla
 							{:else}
 								Čeká na zaplacení
@@ -192,7 +192,7 @@
 		padding: 5px 20px;
 	}
 	input {
-		border-bottom: 2px solid #6537a7;
+		border-bottom: 2px solid #000;
 		border-radius: 0;
 		box-shadow: none;
 	}
@@ -202,9 +202,9 @@
 		margin: 0;
 		color: #fff;
 		font-weight: bold;
-		background: #6537a7;
+		background: #000;
 		border: none;
-		border-radius: 10px;
+		border-radius: 5px;
 		outline: none;
 	}
 	table button {

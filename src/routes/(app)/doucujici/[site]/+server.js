@@ -1,8 +1,8 @@
 import { getTeacherSite } from '$db/teacher'
 import { getTeaching } from '$db/teaching'
 import { getTimetableById, getTimetableTimes } from '$db/timetable'
-import { insertLesson } from '$db/lesson'
-import { getBalance, setPayment, deletePayment } from '$db/payment'
+import { insertLesson, deleteLesson } from '$db/lesson'
+import { getBalance, setPaymentLesson, deletePayment } from '$db/payment'
 import { sendMail } from '$util/mailer'
 if (process.env.NODE_ENV === 'development') {
 	await import('dotenv/config')
@@ -135,8 +135,20 @@ export const POST = async ({ request, params, locals }) => {
 
 		let date = new Date(timetableCheck[0]?.start)
 
-		let payment = await setPayment(
-			'',
+		let lessonInsert = await insertLesson(locals?.user?.id, timetable, teaching)
+
+		if (!lessonInsert[0]?.id) {
+			let status = 500
+			let returnObj = {
+				result: 'error',
+				text: 'Chyba při ukládání'
+			}
+
+			return new Response(JSON.stringify(returnObj), { status })
+		}
+
+		let payment = await setPaymentLesson(
+			lessonInsert[0]?.id,
 			locals?.user?.id,
 			new Date().toISOString().replace('T', ' ').replace(/\..+/, ''),
 			'T',
@@ -150,11 +162,13 @@ export const POST = async ({ request, params, locals }) => {
 				text: 'Chyba při ukládání'
 			}
 
+			await deleteLesson(lessonInsert[0].id)
+
 			return new Response(JSON.stringify(returnObj), { status })
 		}
 
-		let paymentTeacher = await setPayment(
-			'',
+		let paymentTeacher = await setPaymentLesson(
+			lessonInsert[0]?.id,
 			teacher?.id,
 			new Date(date.setDate(date.getDate() + 7))
 				.toISOString()
@@ -171,22 +185,9 @@ export const POST = async ({ request, params, locals }) => {
 				text: 'Chyba při ukládání'
 			}
 
-			await deletePayment(payment[0]?.id)
+			await deletePayment(payment[0].id)
 
-			return new Response(JSON.stringify(returnObj), { status })
-		}
-
-		let lessonInsert = await insertLesson(locals?.user?.id, timetable, teaching)
-
-		if (!lessonInsert[0]?.id) {
-			let status = 500
-			let returnObj = {
-				result: 'error',
-				text: 'Chyba při ukládání'
-			}
-
-			await deletePayment(payment[0]?.id)
-			await deletePayment(paymentTeacher[0]?.id)
+			await deleteLesson(lessonInsert[0].id)
 
 			return new Response(JSON.stringify(returnObj), { status })
 		}

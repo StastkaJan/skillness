@@ -304,8 +304,8 @@
 			odepsání peněz z účtu.
 		</li>
 		<li>
-			Odměna za doučování se vyplací 7 dní po odučené hodině, resp. v souladu se storno podmínkami
-			dohodnutými mezi Doučovatelem a Studentem.
+			Odměna za doučování se vyplací 7 dní po začátku doučovací hodiny, resp. v souladu se storno
+			podmínkami dohodnutými mezi Doučovatelem a Studentem.
 		</li>
 		<li>
 			Platba za odučenou hodinu probíhá předem. Po zaplacení bude příslušná částka odepsána z účtu
