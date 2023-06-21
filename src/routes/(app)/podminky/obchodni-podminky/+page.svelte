@@ -51,7 +51,7 @@
 			<ul>
 				<li>
 					Student – fyzická osoba bez ohledu na věk, která má zájem o doučování a hledá Doučovatele
-					přes portál Skillnes.com
+					přes portál Skillnes.cz.
 				</li>
 				<li>
 					Doučovatel – fyzická osoba bez ohledu na věk, která má zájem doučovat jiné osoby v určitém
@@ -59,7 +59,7 @@
 				</li>
 				<li>
 					Uživatelé – jednotné označení pro Studenty, Doučovatele i nezaregistrované návštěvníky
-					portálu Skillnes.com
+					portálu Skillnes.cz.
 				</li>
 				<li>
 					Spotřebitel – fyzická osoba, která využívá služeb portálu pro osobní potřebu a která při
@@ -67,10 +67,10 @@
 				</li>
 				<li>
 					Uživatel, který není spotřebitel – fyzická osoba, která při využívání služeb portálu
-					Skillnes.com koná v rámci předmětu své podnikatelské činnosti.
+					Skillnes.cz koná v rámci předmětu své podnikatelské činnosti.
 				</li>
 				<li>
-					Služby – služby které jsou poskytovány Provozovatelem prostřednictvím portálu Skillnes.com
+					Služby – služby které jsou poskytovány Provozovatelem prostřednictvím portálu Skillnes.cz.
 				</li>
 				<li>
 					Smlouva o zprostředkování doučování – dohoda uzavřená mezi Provozovatelem a Studentem,
@@ -89,47 +89,43 @@
 	<h2>Podmínky pro Doučovatele</h2>
 	<ol>
 		<li>
-			Vytvoření profilu a registrace Doučovatele
+			Vytvoření profilu a registrace Doučovatele:
 			<ol>
 				<li>
-					Vytvoření profilu a registrace Doučovatele je podmínkou pro využívání Služeb portálu
-					Skillnes.cz
+					Vytvoření profilu a registrace Doučovatele je podmínkou pro využívání služeb portálu
+					Skillnes.cz.
 				</li>
 				<li>Vytvoření profilu a registrace jsou bezplatné.</li>
 				<li>
-					Doučovatel je oprávněn vystupovat na portálu pouze pod jednou identitou (jméno, příjmení)
-					a používat pouze jeden uživatelský účet.
+					Doučovatel je povinen vystupovat na portálu pouze pod jednou identitou (jméno, příjmení) a
+					používat pouze jeden uživatelský účet.
 				</li>
 				<li>
 					Vyplněním registračních údajů a udělením výslovného souhlasu (zaškrtnutím políčka)
-					"Souhlasím se Všeobecnými podmínkami používání" a "Souhlasím se zpracováním osobních údajů
-					pro účely realizace práv a povinností na Skillnes.com" a "Potvrzuji, že jsem osoba starší
-					16 let " a kliknutím na tlačítko" Registrovat mě "dává doučovatel bezvýhradný souhlas s
-					těmito Podmínkami. V případě, že doučovatel souhlas podle předchozí věty neudělí, není
-					oprávněn portál využívat a nebude mu povolena registrace (vytvoření profilu). Po
-					registraci zašleme Doučovatelovi aktivační email, který musí doučovatel potvrdit, čímž je
-					registrace úspěšně dokončena.
+					"Přečetl/a jsem si Obchodní podmínky a Prohlášení o ochraně osobních údajů a souhlasím s
+					nimi." a kliknutím na tlačítko "Registrovat" dává doučovatel bezvýhradný souhlas s těmito
+					Podmínkami a potvrzuje, že je starší 16 let. V případě, že doučovatel souhlas podle
+					předchozí věty neudělí, není oprávněn portál využívat a nebude mu povolena registrace
+					(vytvoření profilu).
 				</li>
 				<li>
 					Pro vytvoření profilu a registraci požadujeme od Doučovatele následující:<br />
-					povinné údaje:
+					Povinné údaje:
 					<ul>
 						<li>jméno a příjmení,</li>
-						<li>fakturační adresa,</li>
 						<li>e-mailová adresa,</li>
 						<li>fotografie obličeje,</li>
 						<li>stručný sebe prezentující text včetně informací o vzdělání, získané praxi,</li>
 						<li>vysvědčení a certifikáty</li>
 						<li>určení předmětů, ve kterých nabízí doučovatel doučování,</li>
-						<li>určení lokality, pokud doučovatel poskytuje doučování osobně nebo online</li>
+						<li>určení lokality, pokud doučovatel poskytuje doučování osobně nebo online.</li>
 					</ul>
-					nepovinné údaje:
+					Nepovinné údaje:
 					<ul>
 						<li>titul,</li>
-						<li>
-							zda doučovatel dochází za studenty, jaké má preferované časy výuky, cenu, místo
-							doučování,
-						</li>
+						<li>zda doučovatel dochází za studenty,</li>
+						<li>preferované časy výuky,</li>
+						<li>cenu a místo doučování.</li>
 					</ul>
 				</li>
 				<li>
@@ -143,15 +139,15 @@
 					kvality či fotografii, která nesplňuje požadovaná kritéria, je Provozovatel oprávněn
 					odmítnout. Výše uvedená pravidla pro přidávání profilových fotografií se vztahují i na
 					jakékoliv další fotografie a video vizitky, které doučovatel přidává na server, a to
-					zejména do profilu a do sekce "Fotky a certifikáty".
+					zejména do profilu.
 				</li>
 				<li>
 					Provozovatel si vyhrazuje právo zasáhnout a upravit profil Doučovatele, zablokovat ho nebo
 					zrušit, a to i bez udání důvodu, zejména pokud je v rozporu s těmito Podmínkami.
 				</li>
 				<li>
-					Na žádost Doučovatele adresovanou na xxx@xxx.com bude profil neprodleně zrušen. Tím není
-					vyloučena možnost opětovné registrace.
+					Na žádost Doučovatele adresovanou na info@skillnes.cz bude profil neprodleně zrušen. Tím
+					není vyloučena možnost opětovné registrace.
 				</li>
 			</ol>
 		</li>
@@ -179,8 +175,7 @@
 						<li>na kolik procent má vyplněný profil;</li>
 						<li>zda má reference od Studentů;</li>
 						<li>
-							jak má nastavený status (doučovatel si může zvolit status "potřebuji Studenty",
-							"nepotřebuji Studenty" nebo "vše OK");
+							jak má nastavený status (doučovatel může ovlivnit viditelnost své profilové stránky);
 						</li>
 						<li>
 							jaký je zájem ze strany Studentů, tj počet Studentů, kteří v relevantním období
@@ -196,40 +191,35 @@
 		<li>
 			Vytvoření profilu a registrace Studentů
 			<ol>
-				<li>Registrace a využívání služeb portálu Skillnes.com student jsou bezplatné.</li>
+				<li>Registrace a využívání služeb portálu Skillnes.cz student jsou bezplatné.</li>
 				<li>
 					Studenti mají povinnost registrace. Registrace probíhá prostřednictvím odeslání
 					kontaktního formuláře. Před odesláním formuláře vyžadujeme od Studenta, aby se seznámil s
 					těmito Podmínkami a naší politikou ochrany osobních údajů podle platné legislativy, a
-					uvedené potvrdil zaškrtnutím políčka "Souhlasím se Všeobecnými podmínkami používání" a
-					"Souhlasím se zpracováním osobních údajů pro účely realizace práv a povinností na
-					Doučuji.eu "a" Potvrzuji, že jsem osoba starší 16 let ", čímž nám Student uděluje svůj
-					bezvýhradný souhlas s těmito Podmínkami a zpracováním osobních údajů. V případě, že
-					Student souhlas podle předchozí věty neudělí, není oprávněn portál využívat a nebude mu
+					uvedené potvrdil zaškrtnutím políčka "Přečetl/a jsem si Obchodní podmínky a Prohlášení o
+					ochraně osobních údajů a souhlasím s nimi." a kliknutím na tlačítko "Registrovat" dává
+					doučovatel bezvýhradný souhlas s těmito Podmínkami a potvrzuje, že je starší 16 let. Tím
+					nám Student uděluje svůj souhlas s těmito Podmínkami a zpracováním osobních údajů. V
+					případě, že Student souhlas podle neudělí, není oprávněn portál využívat a nebude mu
 					povoleno odeslání kontaktního formuláře. V případě pozdější registrace Studenta již
 					opakované udělení souhlasů nevyžadujeme.
 				</li>
 				<li>
 					Při registraci vyžadujeme od Studenta vyplnění registračních údajů a potvrzení zaškrtnutím
-					políčka "Souhlasím se Všeobecnými podmínkami používání" a "Souhlasím se zpracováním
-					osobních údajů pro účely realizace práv a povinností" a " Potvrzuji, že jsem osoba starší
-					16 let ", čímž nám Student uděluje svůj bezvýhradný souhlas s těmito Podmínkami a
-					zpracováním osobních údajů. V případě, že Student souhlas podle předchozí věty neudělí,
-					není oprávněn portál využívat a nebude mu povolena registrace. Po registraci zašleme
-					Studentovi aktivační email, který musí Student potvrdit, čímž je registrace úspěšně
-					dokončena.
+					políčka "Přečetl/a jsem si Obchodní podmínky a Prohlášení o ochraně osobních údajů a
+					souhlasím s nimi." a kliknutím na tlačítko "Registrovat" dává doučovatel bezvýhradný
+					souhlas s těmito Podmínkami a potvrzuje, že je starší 16 let. Tím nám Student uděluje svůj
+					bezvýhradný souhlas s těmito Podmínkami a zpracováním osobních údajů. V případě, že
+					Student souhlas podle předchozí věty neudělí, není oprávněn portál využívat a nebude mu
+					povolena registrace. Po registraci zašleme Studentovi aktivační email, který musí Student
+					potvrdit, čímž je registrace úspěšně dokončena.
 				</li>
 				<li>
-					Pro vytvoření profilu a registraci požadujeme od Studenta následující: povinné údaje:
+					Pro vytvoření profilu a registraci požadujeme od Studenta následující:<br />
+					povinné údaje:
 					<ul>
 						<li>jméno a příjmení,</li>
-						<li>e-mailová adresa,</li>
-						<li>určení předmětů, v nichž má zájem o doučování,</li>
-						<li>určení lokality nebo informaci že hledá doučování online</li>
-					</ul>
-					dodatečné nepovinné informace:
-					<ul>
-						<li>zda je ochoten dojíždět za Doučovateli.</li>
+						<li>e-mailová adresa.</li>
 					</ul>
 				</li>
 				<li>
@@ -247,7 +237,7 @@
 				</li>
 			</ol>
 		</li>
-		<li>
+		<!-- <li>
 			Podmínky využívání portálu Studenty
 			<ol>
 				<li>
@@ -256,12 +246,12 @@
 				</li>
 				<li>Kontaktovat Doučovatele může Student pomocí chatu přes platformu Skillnes.cz</li>
 			</ol>
-		</li>
+		</li> -->
 	</ol>
 	<h2>Notifikace</h2>
 	<ol>
 		<li>
-			Aby portál Skillnes.com fungoval efektivně je nezbytné, aby byli Doučovatelé a Studenti v
+			Aby portál Skillnes.cz fungoval efektivně je nezbytné, aby byli Doučovatelé a Studenti v
 			aktivním spojení. Proto je o dění na portálu a na jejich osobním profilu průběžně informujeme,
 			a aby nezapomněli, zasíláme jim upozornění tzv. notifikace. Notifikaci posíláme na Uživatelův
 			mail.
@@ -272,7 +262,7 @@
 			zlepšeních nebo nových službách) nebo notifikaci o platbě.
 		</li>
 	</ol>
-	<h2>Fungování portálu Skillnes.com</h2>
+	<h2>Fungování portálu Skillnes.cz</h2>
 	<ol>
 		<li>
 			Provozovatel si vyhrazuje oprávnění ke kontrole a přístupu ke vší komunikaci probíhající mezi
@@ -287,7 +277,7 @@
 		</li>
 		<li>
 			Provozovatel si vyhrazuje právo blokovat jakékoliv požadavky na doučování v případě, že jde o
-			velký počet požadavků od téže osoby (spam)
+			velký počet požadavků od téže osoby (spam).
 		</li>
 	</ol>
 	<h2>Platby za doučování a provize zprostředkovateli</h2>
@@ -332,7 +322,7 @@
 		</li>
 		<li>
 			Po zaplacení Studentem za hodinu převede Provozovatel odměnu na účet Doučovatele vedený na
-			Skillnes.com. Doučovatel si může nechat vyplatit odměnu po každé odučené hodině nebo kdykoliv
+			Skillnes.cz. Doučovatel si může nechat vyplatit odměnu po každé odučené hodině nebo kdykoliv
 			na požádání. Upozorňujeme, že na zpracování platby potřebujeme min. 48 hodin.
 		</li>
 		<li>
@@ -350,10 +340,10 @@
 		<li>
 			Provozovatel prohlašuje, že se poskytování Služeb na portálu Skillnes.cz věnuje a bude věnovat
 			s vynaložením maximálního úsilí a s odbornou péčí, tak aby minimalizoval veškerá případná
-			rizika, která by při využívání Skillnes.com mohly vzniknout Uživatelem. Provozovatel si
+			rizika, která by při využívání Skillnes.cz mohly vzniknout Uživatelem. Provozovatel si
 			vyhrazuje právo, a to i bez předchozího oznámení, upravovat, měnit nebo inovovat Služby
-			portálu Skillnes.com Provozovatel má právo kdykoliv provést technickou odstávku portálu
-			Skillnes.com, a to i bez jakéhokoliv předchozího upozornění.
+			portálu Skillnes.cz Provozovatel má právo kdykoliv provést technickou odstávku portálu
+			Skillnes.cz, a to i bez jakéhokoliv předchozího upozornění.
 		</li>
 		<li>
 			Doučovatelé i Studenti udělují Provozovateli souhlas ve smyslu zákona o elektronickém obchodu
@@ -397,8 +387,8 @@
 					nebo zadaných referencích;
 				</li>
 				<li>
-					používat Skillnes.com způsobem, který by ho mohl poškodit, měnit vizuální podobu,
-					zasahovat do kódu stránky nebo přetížit tento web
+					používat Skillnes.cz způsobem, který by ho mohl poškodit, měnit vizuální podobu, zasahovat
+					do kódu stránky nebo přetížit tento web
 				</li>
 			</ul>
 		</li>
@@ -412,7 +402,7 @@
 			změnou právních předpisů, technickými možnostmi Provozovatele nebo jinými okolnostmi, které
 			vyplynou z potřeb Provozovatele. V případě, že dojde ke změně Podmínek, Uživatel bere na
 			vědomí a souhlasí s tím, že platná a účinná je vždy poslední verze Podmínek. Oznámení o změně
-			Podmínek a odkaz na aktuální znění Podmínek zveřejnění Provozovatel na portálu Skillnes.com.
+			Podmínek a odkaz na aktuální znění Podmínek zveřejnění Provozovatel na portálu Skillnes.cz.
 			Uživatel je oprávněn se kdykoli seznámit s aktuálním zněním Podmínek na web stránce odkaz.
 			Pokud Uživatel pokračuje v užívání služeb portálu po nabytí účinnosti těchto změn, má se za
 			to, že se změnami Podmínek bez výhrad souhlasí.
@@ -484,7 +474,7 @@
 		<li>
 			Provozovatel si vyhrazuje právo kdykoliv změnit tyto Podmínky, přičemž veškeré takové změny
 			jsou pro Uživatele závazné dnem jejich účinnosti Veškeré změny těchto Podmínek nabývají
-			účinnosti dnem jejich zveřejnění na internetové stránce www.skillnes.com. Provozovatel je
+			účinnosti dnem jejich zveřejnění na internetové stránce www.Skillnes.cz. Provozovatel je
 			povinen změnu podmínek vhodným způsobem zveřejnit před nabytím účinnosti změn Podmínek. Tyto
 			Podmínky nabývají účinnosti dne 14. 02. 2023.
 		</li>

@@ -18,7 +18,7 @@
 	<nav>
 		<a href="/profil">Základní údaje</a>
 		<a href="/profil/stav">Stav účtu</a>
-		<a href="/profil/uceni">Přihlášen k doučování</a>
+		<a href="/profil/uceni">Přihlášení k hodinám</a>
 		<a href="/profil/doucujici">Profil doučujícího</a>
 		{#if $page?.data?.user?.isTeacher == true}
 			<a href="/profil/predmety">Doučované předměty</a>

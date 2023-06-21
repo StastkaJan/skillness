@@ -1,4 +1,6 @@
 import { DBConnection } from './dbConnect'
+import { lastLessonsUpdated } from '$store/serverStore'
+import { autoUpdatePayment } from '$db/payment'
 
 let dbName = 'lesson'
 
@@ -8,10 +10,10 @@ export const getLesson = async (id = 0) => {
 	try {
 		const res = await db.query(
 			`
-      SELECT lesson.id as id, timetable.teacher as teacher, "user".email as userEmail
+      SELECT lesson.id as id, timetable.teacher as teacher, "user".email as userEmail, "user".id as user, timetable.start as start, status
         FROM ${dbName}
-					LEFT JOIN timetable ON timetable.id = ${dbName}.timetable
-					LEFT JOIN "user" ON "user".id = lesson."user"
+					JOIN timetable ON timetable.id = ${dbName}.timetable
+					JOIN "user" ON "user".id = lesson."user"
         WHERE lesson.id = $1
     	`,
 			[id]
@@ -24,16 +26,21 @@ export const getLesson = async (id = 0) => {
 }
 
 export const getUserLessons = async (userId = 0) => {
+	autoUpdateLesson()
 	let db = new DBConnection()
 
 	try {
 		const res = await db.query(
 			`
-      SELECT time, "user".name, teacher.site
+      SELECT lesson.id as id, timetable.start as start, "user".name as teacher, subject.name as subject, status, site
         FROM ${dbName}
-          INNER JOIN "user" ON "user".id = ${dbName}.teacher
-          INNER JOIN teacher ON teacher.id = ${dbName}.teacher
-        WHERE user = $1
+          LEFT JOIN timetable ON timetable.id = ${dbName}.timetable
+          LEFT JOIN teacher ON teacher.id = timetable.teacher
+          LEFT JOIN "user" ON "user".id = timetable.teacher
+          LEFT JOIN teaching ON teaching.id = ${dbName}.teaching
+					LEFT JOIN subject ON teaching.subject = subject.id
+        WHERE lesson."user" = $1
+				ORDER BY timetable.start
     	`,
 			[userId]
 		)
@@ -45,6 +52,7 @@ export const getUserLessons = async (userId = 0) => {
 }
 
 export const getTeacherLessons = async (teacherId = 0) => {
+	autoUpdateLesson()
 	let db = new DBConnection()
 
 	try {
@@ -127,6 +135,36 @@ export const deleteLesson = async (lessonId = 0) => {
     	`,
 			[lessonId]
 		)
+		return res?.rows
+	} catch (err) {
+		console.log(err)
+		throw err
+	}
+}
+
+export const autoUpdateLesson = async () => {
+	let date = new Date()
+	if (lastLessonsUpdated > new Date()) {
+		lastLessonsUpdated = new Date(date.setTime(date.getTime() + 3.6e6))
+	}
+	let db = new DBConnection()
+
+	try {
+		const res = await db.query(
+			`
+      UPDATE ${dbName}
+        SET status = 'F'
+        WHERE timetable IN (
+					SELECT id
+						FROM timetable
+						WHERE start > now()
+				)
+					AND status like 'W'
+				RETURNING id
+    	`,
+			[]
+		)
+		autoUpdatePayment()
 		return res?.rows
 	} catch (err) {
 		console.log(err)

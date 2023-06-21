@@ -1,8 +1,10 @@
 import { DBConnection } from './dbConnect'
+import { lastPaymentsUpdated } from '$store/serverStore'
 
 let dbName = 'payment'
 
 export const getUserPayment = async (userId = 0) => {
+	autoUpdatePayment()
 	let db = new DBConnection()
 
 	try {
@@ -180,5 +182,36 @@ export const deletePayment = async (id = '') => {
 		return res?.rows
 	} catch (err) {
 		console.log(err)
+	}
+}
+
+export const autoUpdatePayment = async () => {
+	let date = new Date()
+	if (lastPaymentsUpdated > new Date()) {
+		lastPaymentsUpdated = new Date(date.setTime(date.getTime() + 3.6e6))
+	}
+	let db = new DBConnection()
+
+	try {
+		const res = await db.query(
+			`
+      UPDATE ${dbName}
+        SET paid = 'F'
+        WHERE lesson IN (
+					SELECT lesson.id
+						FROM lesson
+							JOIN timetable ON lesson.timetable = timetable.id
+						WHERE status IN ('W', 'F')
+							AND start > now()
+				)
+					AND paid like 'T'
+				RETURNING id
+    	`,
+			[]
+		)
+		return res?.rows
+	} catch (err) {
+		console.log(err)
+		throw err
 	}
 }

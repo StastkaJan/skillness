@@ -7,7 +7,10 @@ export const POST = async ({ request, locals }) => {
 
 	// looks for dates that are before tomorrow
 	let wrongDates = timetable.filter(e => {
-		new Date(e.start) > new Date(date.setDate(date.getDate() + 1))
+		return (
+			new Date(e.start) == 'Invalid Date' ||
+			new Date(e.start) < new Date(date.setDate(date.getDate() + 1))
+		)
 	})
 	if (wrongDates.length > 0) {
 		let status = 200

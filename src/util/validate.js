@@ -145,3 +145,11 @@ export const activeUserVal = (active = '') => {
 
 	return ''
 }
+
+export const scoreVal = (score = 0) => {
+	if (score < 0 || score > 5) {
+		return 'Neplatné číselné hodnocení'
+	}
+
+	return ''
+}
