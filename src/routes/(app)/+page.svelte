@@ -12,6 +12,8 @@
 	import mainImgMobileWebp from '$img/mainMobile.webp'
 	import asideImg from '$img/aside1.png'
 	import asideImgWebp from '$img/aside1.webp'
+	import aside2Img from '$img/aside2.png'
+	import aside2ImgWebp from '$img/aside2.webp'
 
 	onMount(() => {
 		$headerBg = true
@@ -93,8 +95,8 @@
 		</div>
 		<div>
 			<picture>
-				<source srcset={placeholderWebp} type="image/webp" />
-				<img src={placeholder} alt="" loading="lazy" width="400" height="267" />
+				<source srcset={aside2ImgWebp} type="image/webp" />
+				<img src={aside2Img} alt="" loading="lazy" width="400" height="267" />
 			</picture>
 		</div>
 		<div>

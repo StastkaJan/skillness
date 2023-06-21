@@ -9,7 +9,7 @@
 
 	export let data
 
-	let { teacher, timetable = [], teaching, site } = data,
+	let { teacher, timetable = [], teaching, site, reviews } = data,
 		teachingCount = teaching.length
 
 	let subjectsOpen = false
@@ -17,7 +17,8 @@
 	$: (teacher = data.teacher),
 		(timetable = data.timetable),
 		(teaching = data.teaching),
-		(site = data.site)
+		(site = data.site),
+		(reviews = data.reviews)
 
 	$headerBg = false
 
@@ -96,7 +97,7 @@
 			</div>
 			<div class="subjects">
 				<h2>Vyučované předměty</h2>
-				<div style={subjectsOpen ? 'max-height:644px;overflow:auto' : 'max-height:322px;'}>
+				<div class:open={subjectsOpen}>
 					{#each teaching as teach, i}
 						<TeachingTile {teach} />
 					{/each}
@@ -106,6 +107,30 @@
 				{/if}
 			</div>
 			<!-- <Timetable {timetable} title="Volný čas učitele" /> -->
+			<div class="reviews">
+				<h2>Recenze</h2>
+				<div class:open={subjectsOpen}>
+					{#each reviews as { score, description, name }}
+						<div>
+							<h3>
+								{name}
+								<div class="stars">
+									{#each { length: score } as _, i}
+										<span>&starf;</span>
+									{/each}
+									{#each { length: 5 - score } as _, i}
+										<span>&star;</span>
+									{/each}
+								</div>
+							</h3>
+							<p>{description}</p>
+						</div>
+					{/each}
+				</div>
+				{#if reviews.length > 4}
+					<button on:click={moreSubjects}>Zobrazit více</button>
+				{/if}
+			</div>
 			{#if $page.data.user?.email !== teacher.email}
 				<div>
 					<button on:click={registerLecture}>Přihlásit se k hodině</button>
@@ -176,7 +201,8 @@
 		flex-direction: column;
 		gap: 50px;
 	}
-	.data > div:first-of-type {
+	.data > div:first-of-type,
+	.reviews > div > div {
 		box-shadow: 0 0 10px #ccc;
 		border-radius: 20px;
 	}
@@ -191,6 +217,22 @@
 		margin: auto;
 		overflow: hidden;
 		transition: 0.3s;
+	}
+	.reviews > div,
+	.subjects > div {
+		max-height: 322px;
+	}
+	.reviews > div.open,
+	.subjects > div.open {
+		max-height: 644px;
+		overflow: auto;
+	}
+	div.stars {
+		display: inline;
+		margin-left: 10px;
+	}
+	div.stars span {
+		font-size: 1.2em;
 	}
 	@media (max-width: 1050px) {
 		div.container {

@@ -8,10 +8,12 @@ export const getTeacherReviews = async (teacherId = 0) => {
 	try {
 		const res = await db.query(
 			`
-      SELECT score, description
+      SELECT score, description, "user".name as name
         FROM ${dbName}
-          INNER JOIN lesson ON lesson.id = ${dbName}.lesson
-        WHERE lesson.teacher = $1
+          JOIN lesson ON lesson.id = ${dbName}.lesson
+					JOIN "user" ON "user".id = lesson.user
+          JOIN timetable ON timetable.id = lesson.timetable
+        WHERE timetable.teacher = $1
     `,
 			[teacherId]
 		)
