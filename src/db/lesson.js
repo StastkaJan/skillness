@@ -143,9 +143,10 @@ export const deleteLesson = async (lessonId = 0) => {
 }
 
 export const autoUpdateLesson = async () => {
-	let date = new Date()
-	if (getLastLessonsUpdated() > new Date()) {
+	if (getLastLessonsUpdated() < new Date()) {
+		let date = new Date()
 		setLastLessonsUpdated(new Date(date.setTime(date.getTime() + 3.6e6)))
+		return
 	}
 	let db = new DBConnection()
 

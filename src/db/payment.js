@@ -186,7 +186,7 @@ export const deletePayment = async (id = '') => {
 }
 
 export const autoUpdatePayment = async () => {
-	if (getLastPaymentsUpdated() > new Date()) {
+	if (getLastPaymentsUpdated() < new Date()) {
 		let date = new Date()
 		setLastPaymentsUpdated(new Date(date.setTime(date.getTime() + 3.6e6)))
 		return
