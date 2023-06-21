@@ -157,7 +157,7 @@ export const autoUpdateLesson = async () => {
         WHERE timetable IN (
 					SELECT id
 						FROM timetable
-						WHERE start > now()
+						WHERE start < now()
 				)
 					AND status like 'W'
 				RETURNING id

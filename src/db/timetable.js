@@ -102,6 +102,7 @@ export const getTimetableTimes = async (teacherId = 0, date = '', dateEnd = '') 
 					AND id NOT IN (
 						SELECT timetable 
 							FROM lesson
+							WHERE status NOT LIKE 'F'
 					)
 				ORDER BY start
       `,

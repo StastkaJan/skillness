@@ -203,7 +203,7 @@ export const autoUpdatePayment = async () => {
 						FROM lesson
 							JOIN timetable ON lesson.timetable = timetable.id
 						WHERE status IN ('W', 'F')
-							AND start > now()
+							AND start < now()
 				)
 					AND paid like 'T'
 				RETURNING id

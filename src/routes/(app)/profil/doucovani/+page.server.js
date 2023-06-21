@@ -43,7 +43,7 @@ export const actions = {
 		}
 
 		await sendMail(
-			lessonExist.userEmail,
+			lessonExist[0].userEmail,
 			'Hodina byla potvrzena | Skillnes',
 			`
 <!DOCTYPE html>
