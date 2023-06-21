@@ -25,60 +25,23 @@ export const getAllTeachersWhere = async (text = '', sbjid = '') => {
 	let db = new DBConnection()
 
 	try {
-		let res
-		if (text && sbjid) {
-			res = await db.query(
-				`
-				SELECT name, bio, img, site, AVG(price)
+		let res = await db.query(
+			`
+				SELECT name, bio, img, site, AVG(price) as price, AVG(score) as score
 				FROM ${dbName}
-        	INNER JOIN public."user" ON public."user".id = ${dbName}.id
-					INNER JOIN teaching ON teaching.teacher = ${dbName}.id
+        	LEFT JOIN public."user" ON public."user".id = ${dbName}.id
+					LEFT JOIN teaching ON teaching.teacher = ${dbName}.id
+					LEFT JOIN timetable ON timetable.teacher = ${dbName}.id
+					LEFT JOIN lesson ON lesson.timetable = timetable.id
+					LEFT JOIN review ON review.lesson = lesson.id
         WHERE LOWER(public."user".name) like LOWER($1)
 					AND ${dbName}.active like 'T'
-					AND teaching.subject = $2
-				GROUP BY name, bio, img, site
+					${sbjid ? 'AND teaching.subject = $2' : ''}
+				GROUP BY name, bio, img, site, "user".id
+				ORDER BY (SELECT ranking("user".id)) DESC
 				`,
-				[`%${text}%`, sbjid]
-			)
-		} else if (text) {
-			res = await db.query(
-				`
-				SELECT name, bio, img, site, AVG(price)
-				FROM ${dbName}
-					INNER JOIN public."user" ON public."user".id = ${dbName}.id
-					INNER JOIN teaching ON teaching.teacher = ${dbName}.id
-				WHERE LOWER(public.users.name) like LOWER($1)
-					AND ${dbName}.active like 'T'
-				GROUP BY name, bio, img, site
-				`,
-				[`%${text}%`]
-			)
-		} else if (sbjid) {
-			res = await db.query(
-				`
-				SELECT name, bio, img, site, AVG(price)
-				FROM ${dbName}
-					INNER JOIN public."user" ON public."user".id = ${dbName}.id
-					INNER JOIN teaching ON teaching.teacher = ${dbName}.id
-				WHERE ${dbName}.active like 'T'
-					AND teaching.subject = $1
-				GROUP BY name, bio, img, site
-				`,
-				[sbjid]
-			)
-		} else {
-			res = await db.query(
-				`
-				SELECT name, bio, img, site, AVG(price)
-				FROM ${dbName}
-					INNER JOIN public."user" ON public."user".id = ${dbName}.id
-					INNER JOIN teaching ON teaching.teacher = ${dbName}.id
-				WHERE ${dbName}.active like 'T'
-				GROUP BY name, bio, img, site
-				`,
-				[]
-			)
-		}
+			sbjid ? [`%${text}%`, sbjid] : [`%${text}%`]
+		)
 		return res?.rows
 	} catch (err) {
 		console.log(err)

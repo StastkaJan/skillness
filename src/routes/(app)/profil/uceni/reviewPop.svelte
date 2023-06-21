@@ -42,12 +42,12 @@
 		<input type="hidden" name="lesson" value={id} required />
 		<div title={score}>
 			<label for="score">Číselné hodnocení*</label>
-			<div>
+			<div class="stars">
 				{#each { length: score } as { }}
-					<span style="font-size:450%">&starf;</span>
+					<span>&starf;</span>
 				{/each}
 				{#each { length: 5 - score } as { }}
-					<span style="font-size:450%">&star;</span>
+					<span>&star;</span>
 				{/each}
 				<input type="range" name="score" id="score" min="0" max="5" required bind:value={score} />
 			</div>
@@ -67,5 +67,8 @@
 	button {
 		background: #000;
 		color: #fff;
+	}
+	div.stars span {
+		font-size: 4.5em;
 	}
 </style>

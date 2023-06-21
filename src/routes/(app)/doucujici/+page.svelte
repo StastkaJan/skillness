@@ -4,7 +4,10 @@
 	import { onDestroy, onMount } from 'svelte'
 	import TeacherTile from './teacherTile.svelte'
 
-	export let data = {}
+	let teachers = [],
+		search = ''
+
+	$: teachers = $page.data.teachers
 
 	onMount(() => {
 		$headerBg = true
@@ -13,22 +16,6 @@
 	onDestroy(() => {
 		$headerBg = false
 	})
-
-	let search = data?.params?.get('search') || ''
-
-	async function searchTerm(e) {
-		if (e.key === 'Enter') {
-			if (!document.location.search.match(/search=/)) {
-				document.location.search += `search=${encodeURIComponent(search)}`
-			} else {
-				document.location.search = ''
-			}
-			let res = await fetch(`/doucujici?search=${encodeURIComponent(search)}`)
-			let resJson = await res.json()
-			resJson = resJson.body
-			data.teachers = resJson.teachers
-		}
-	}
 </script>
 
 <svelte:head>
@@ -45,24 +32,15 @@
 		<div>
 			<h1>Přehled doučujících<span>Najdi parťáka, který ti pomůže</span></h1>
 
-			<input
-				type="search"
-				placeholder="Amanda Melounová"
-				bind:value={search}
-				on:keydown={searchTerm}
-			/>
+			<form action="">
+				<input type="search" placeholder="Amanda Melounová" bind:value={search} />
+			</form>
 		</div>
 	</section>
 	<section class="tiles">
 		<div>
-			{#each data?.teachers as teacher}
-				<TeacherTile
-					name={teacher.name}
-					bio={teacher.bio}
-					img={teacher.img}
-					site={teacher.site}
-					price={teacher.avg}
-				/>
+			{#each teachers as { name, bio, img, site, price, score }}
+				<TeacherTile {name} {bio} {img} {site} {price} {score} />
 			{:else}
 				<p>Nikdo nenalezen</p>
 			{/each}
