@@ -1,6 +1,6 @@
 import { DBConnection } from './dbConnect'
-import { lastLessonsUpdated } from '$store/serverStore'
 import { autoUpdatePayment } from '$db/payment'
+import { getLastLessonsUpdated, setLastLessonsUpdated } from '$store/serverStore'
 
 let dbName = 'lesson'
 
@@ -144,8 +144,8 @@ export const deleteLesson = async (lessonId = 0) => {
 
 export const autoUpdateLesson = async () => {
 	let date = new Date()
-	if (lastLessonsUpdated > new Date()) {
-		lastLessonsUpdated = new Date(date.setTime(date.getTime() + 3.6e6))
+	if (getLastLessonsUpdated() > new Date()) {
+		setLastLessonsUpdated(new Date(date.setTime(date.getTime() + 3.6e6)))
 	}
 	let db = new DBConnection()
 

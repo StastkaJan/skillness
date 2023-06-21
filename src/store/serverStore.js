@@ -26,6 +26,22 @@ export const removeSession = (sessionId = '') => {
 	return 'success'
 }
 
-export let lastLessonsUpdated = new Date(0)
+let lastLessonsUpdated = new Date(0)
 
-export let lastPaymentsUpdated = new Date(0)
+export const getLastLessonsUpdated = () => {
+	return lastLessonsUpdated
+}
+
+export const setLastLessonsUpdated = (time = new Date()) => {
+	lastLessonsUpdated = time
+}
+
+let lastPaymentsUpdated = new Date(0)
+
+export const getLastPaymentsUpdated = () => {
+	return lastPaymentsUpdated
+}
+
+export const setLastPaymentsUpdated = (time = new Date()) => {
+	lastPaymentsUpdated = time
+}

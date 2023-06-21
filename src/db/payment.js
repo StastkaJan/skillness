@@ -1,5 +1,5 @@
 import { DBConnection } from './dbConnect'
-import { lastPaymentsUpdated } from '$store/serverStore'
+import { getLastPaymentsUpdated, setLastPaymentsUpdated } from '$store/serverStore'
 
 let dbName = 'payment'
 
@@ -186,9 +186,10 @@ export const deletePayment = async (id = '') => {
 }
 
 export const autoUpdatePayment = async () => {
-	let date = new Date()
-	if (lastPaymentsUpdated > new Date()) {
-		lastPaymentsUpdated = new Date(date.setTime(date.getTime() + 3.6e6))
+	if (getLastPaymentsUpdated() > new Date()) {
+		let date = new Date()
+		setLastPaymentsUpdated(new Date(date.setTime(date.getTime() + 3.6e6)))
+		return
 	}
 	let db = new DBConnection()
 
