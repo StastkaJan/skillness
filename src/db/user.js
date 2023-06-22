@@ -10,6 +10,7 @@ export const getUsers = async () => {
         FROM public."user"
 				LEFT JOIN payment ON payment."user" = public."user".id
 					WHERE payment.paid like 'T'
+						AND "timestamp" < now()
 				GROUP BY public."user".id, email, name, active
 				ORDER BY id
       `,
