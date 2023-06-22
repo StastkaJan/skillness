@@ -9,6 +9,7 @@ export const getUsers = async () => {
       SELECT public."user".id, email, name, active, SUM(sum) as sum
         FROM public."user"
 				LEFT JOIN payment ON payment."user" = public."user".id
+					WHERE payment.paid like 'T'
 				GROUP BY public."user".id, email, name, active
 				ORDER BY id
       `,
