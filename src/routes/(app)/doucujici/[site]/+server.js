@@ -86,7 +86,7 @@ export const POST = async ({ request, params, locals }) => {
 
 		let teacher = await getTeacherSite(params.site)
 		if (!teacher?.id) {
-			let status = 403
+			let status = 200
 			let returnObj = {
 				result: 'error',
 				text: 'Doučující nenalezen'
@@ -95,7 +95,7 @@ export const POST = async ({ request, params, locals }) => {
 		}
 
 		if (locals?.user?.id == teacher?.id) {
-			let status = 403
+			let status = 200
 			let returnObj = {
 				result: 'error',
 				text: 'Nelze doučovat sám sebe'
@@ -105,7 +105,7 @@ export const POST = async ({ request, params, locals }) => {
 
 		let timetableCheck = await getTimetableById(timetable)
 		if (!timetableCheck[0]) {
-			let status = 403
+			let status = 200
 			let returnObj = {
 				result: 'error',
 				text: 'Čas v rozvrhu nenalezen'
@@ -115,7 +115,7 @@ export const POST = async ({ request, params, locals }) => {
 
 		let teachingCheck = await getTeaching(teaching)
 		if (!teachingCheck[0]) {
-			let status = 403
+			let status = 200
 			let returnObj = {
 				result: 'error',
 				text: 'Předmět nenalezen'
@@ -125,7 +125,7 @@ export const POST = async ({ request, params, locals }) => {
 
 		let balanceCheck = await getBalance(locals?.user?.id)
 		if (Number(balanceCheck[0]?.sum) < teachingCheck[0]?.price) {
-			let status = 403
+			let status = 200
 			let returnObj = {
 				result: 'error',
 				text: 'Nedostatek kreditů.'

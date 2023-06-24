@@ -153,3 +153,23 @@ export const scoreVal = (score = 0) => {
 
 	return ''
 }
+
+export const accountVal = (account = 0) => {
+	if (account.length < 1) {
+		return 'Číslo účtu je příliš krátké'
+	} else if (!account.match(/^(\d{1,6}-)?\d{1,10}\/\d{4}$/)) {
+		return 'Číslo účtu je neplatné'
+	}
+
+	return ''
+}
+
+export const sumVal = (sum = '') => {
+	if (!sum.match(/\d+(,\d{2})?/)) {
+		return 'Zadaná cena je neplatná'
+	} else if (Number(sum) < 50) {
+		return 'Zadaná cena je příliš nízká'
+	}
+
+	return ''
+}

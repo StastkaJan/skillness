@@ -123,6 +123,7 @@
 		width: fit-content;
 	}
 	:global(input[type='text']),
+	:global(input[type='number']),
 	:global(input[type='password']),
 	:global(textarea),
 	:global(select) {

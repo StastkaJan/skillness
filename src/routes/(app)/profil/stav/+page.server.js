@@ -1,6 +1,7 @@
-import { getUserPayment, getBalance } from '$db/payment'
+import { getUserPayment, getBalance, updatePayment, setPaymentWithdraw } from '$db/payment'
 import { createPaymentUrl, getPaymentUrl } from '$util/createPayment'
-import { updatePayment } from '$db/payment'
+import { sumVal, accountVal } from '$util/validate'
+import { insertWithdraw } from '$db/withdraw'
 
 export const load = async ({ locals, url }) => {
 	let returnObj = {
@@ -71,6 +72,91 @@ export const actions = {
 			let returnObj = {
 				result: 'error',
 				text: 'Došlo k chybě, zkuste to později.'
+			}
+			return returnObj
+		} catch (err) {
+			console.log(err)
+			let returnObj = {
+				result: 'error',
+				text: 'Chyba serveru'
+			}
+			return returnObj
+		}
+	},
+	saveWithdraw: async ({ request, locals, url }) => {
+		let formData = await request.formData()
+		let sum = formData.get('sum')
+		let account = formData.get('account')
+
+		let validation = {
+			sum: '',
+			account: ''
+		}
+
+		validation.sum = sumVal(sum)
+		validation.account = accountVal(account)
+
+		Object.keys(validation).forEach(key => {
+			if (validation[key] === '') {
+				delete validation[key]
+			}
+		})
+
+		if (Object.keys(validation).length > 0) {
+			let returnObj = {
+				result: 'error',
+				text: validation[Object.keys(validation)[0]]
+			}
+			return returnObj
+		}
+
+		try {
+			let balance = await getBalance(locals?.user?.id)
+
+			if (!balance[0]?.sum) {
+				let returnObj = {
+					result: 'error',
+					text: 'Nenalezen záznam o stavu účtu'
+				}
+				return returnObj
+			}
+
+			if (Number(balance[0]?.sum) < Number(sum)) {
+				let returnObj = {
+					result: 'error',
+					text: 'Nelze vybrat větší částku než je stav účtu'
+				}
+				return returnObj
+			}
+
+			let payment = await setPaymentWithdraw(
+				locals?.user?.id,
+				new Date().toISOString().replace('T', ' ').replace(/\..+/, ''),
+				'T',
+				-sum
+			)
+
+			if (payment.length < 1 || !payment[0].id) {
+				let returnObj = {
+					result: 'error',
+					text: 'Při ukládání došlo k chybě'
+				}
+				return returnObj
+			}
+
+			let withdraw = await insertWithdraw(locals?.user?.id, sum, account)
+
+			if (withdraw.length < 1 || !withdraw[0].id) {
+				let returnObj = {
+					result: 'error',
+					text: 'Při ukládání došlo k chybě'
+				}
+				return returnObj
+			}
+
+			let returnObj = {
+				result: 'success',
+				text: 'Úspěšně odesláno'
 			}
 			return returnObj
 		} catch (err) {

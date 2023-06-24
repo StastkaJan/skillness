@@ -1,7 +1,8 @@
 <script>
+	import WithdrawPop from './withdrawPop.svelte'
 	import { enhance } from '$app/forms'
 	import { page } from '$app/stores'
-	import { notification, loading } from '$store/clientStore.js'
+	import { notification, loading, popup } from '$store/clientStore.js'
 	import { goto } from '$app/navigation'
 
 	export let data
@@ -53,6 +54,14 @@
 			goto(result.data.paymentUrl)
 		}
 	}
+
+	function openWithdraw() {
+		$popup = {
+			title: 'Vybrat peníze',
+			component: WithdrawPop,
+			props: {}
+		}
+	}
 </script>
 
 <svelte:head>
@@ -67,6 +76,7 @@
 			Také zde můžeš přidat kredity na svůj účet. Nárok na kredity za doučování vzniká 7 dnů po jeho
 			datu.
 		</p>
+		<button on:click={openWithdraw}>Vybrat peníze</button>
 	</div>
 
 	<div class="overview">
@@ -197,7 +207,6 @@
 		box-shadow: none;
 	}
 	button {
-		width: 100%;
 		height: 40px;
 		margin: 0;
 		color: #fff;
@@ -206,6 +215,9 @@
 		border: none;
 		border-radius: 5px;
 		outline: none;
+	}
+	.overview button {
+		width: 100%;
 	}
 	table button {
 		width: unset;

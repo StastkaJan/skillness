@@ -130,6 +130,30 @@ export const setPaymentLesson = async (
 	}
 }
 
+export const setPaymentWithdraw = async (
+	userId = 0,
+	timestamp = new Date().toISOString().replace('T', ' ').replace(/\..+/, ''),
+	paid = 'W',
+	sum = 0
+) => {
+	let db = new DBConnection()
+
+	try {
+		const res = await db.query(
+			`
+      INSERT INTO
+        ${dbName} ("user", timestamp, paid, sum)
+        VALUES ($1, $2, $3, $4)
+        RETURNING id
+      `,
+			[userId, timestamp, paid, sum]
+		)
+		return res?.rows
+	} catch (err) {
+		console.log(err)
+	}
+}
+
 export const updatePayment = async (id = '', paid = 'W') => {
 	let db = new DBConnection()
 
