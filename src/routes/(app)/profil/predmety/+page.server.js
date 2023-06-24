@@ -1,12 +1,13 @@
 import { getTeachings } from '$db/teaching'
 import { getTeachingSubject, setTeaching, updateTeaching } from '$db/teaching'
-import { getSubject } from '$db/subject'
+import { getSubject, getSubjects } from '$db/subject'
 import { subjectVal, priceVal } from '$util/validate'
 
 export const load = async ({ locals }) => {
 	let teaching = await getTeachings(locals.user.id)
 
 	return {
+		subjects: await getSubjects(),
 		teaching,
 		user: locals.user
 	}
@@ -15,16 +16,13 @@ export const load = async ({ locals }) => {
 export const actions = {
 	addSubject: async ({ request, locals }) => {
 		let formData = await request.formData()
-		let subject = formData.get('subject')
 		let price = formData.get('price')
 		let subjectId = formData.get('id')
 
 		let validation = {
-			subject: '',
 			price: ''
 		}
 
-		validation.subject = subjectVal(subject)
 		validation.price = priceVal(price)
 
 		Object.keys(validation).forEach(key => {

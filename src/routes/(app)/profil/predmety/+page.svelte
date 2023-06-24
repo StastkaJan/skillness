@@ -5,57 +5,16 @@
 	import { notification, loading } from '$store/clientStore.js'
 	import TeachingTile from './teachingTile.svelte'
 
-	let teaching = $page.data.teaching
+	let { teaching, subjects } = $page.data
+
 	$: teaching = $page.data.teaching
+	$: subjects = $page.data.subjects
 
 	let subject = '',
 		price = '',
 		id = 0,
 		error = '',
-		timer = setTimeout(() => {}, 0),
-		searchResults = [],
-		found = false,
-		searchFinished = true,
 		readonly = false
-
-	function searchSubject() {
-		if (readonly) return
-		clearTimeout(timer)
-		timer = setTimeout(search, 500)
-		found = false
-	}
-
-	async function search() {
-		if (readonly) return
-		try {
-			searchFinished = false
-			let res = await fetch('/profil/predmety/hledani', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-					accept: 'application/json'
-				},
-				body: JSON.stringify({ subject })
-			})
-			let resJson = await res.json()
-
-			if (resJson.type === 'redirect') {
-				goto(resJson.location)
-			}
-
-			searchResults = resJson.content
-			found = true
-		} catch (err) {
-			console.log(err)
-		}
-	}
-
-	function subjectClick(name = '', sbjid = 0) {
-		id = sbjid
-		subject = name
-		searchResults = []
-		searchFinished = true
-	}
 
 	function teachingEdit(teaching) {
 		readonly = true
@@ -137,41 +96,12 @@
 		}}
 	>
 		<div>
-			<label for="subject">Předmět</label>
-			<input
-				type="text"
-				name="subject"
-				bind:value={subject}
-				on:keydown={searchSubject}
-				placeholder="Programování"
-				required
-				{readonly}
-			/>
-			<input type="hidden" name="id" bind:value={id} />
-			{#if subject && !searchFinished}
-				<ul>
-					{#if found}
-						{#each searchResults as item}
-							<li
-								class="option"
-								on:click={() => {
-									subjectClick(item.name, item.id)
-								}}
-								on:keypress={() => {
-									subjectClick(item.name, item.id)
-								}}
-							>
-								{item.name}
-								{item.ident ? ' - ' + item.ident : ''}
-							</li>
-						{:else}
-							<li>Nic nenalezeno</li>
-						{/each}
-					{:else}
-						<li>Načítání...</li>
-					{/if}
-				</ul>
-			{/if}
+			<label for="id">Předmět</label>
+			<select name="id" id="id">
+				{#each subjects as { id, name, ident }}
+					<option value={id} label="{name} - {ident}" />
+				{/each}
+			</select>
 		</div>
 		<div>
 			<label for="price">Cena</label>
@@ -222,32 +152,6 @@
 		flex-wrap: wrap;
 		gap: 50px;
 		margin: 100px auto 50px;
-	}
-	ul {
-		position: absolute;
-		min-width: 100%;
-		margin: 0;
-		padding: 0;
-		background: #fff;
-		box-shadow: 0 0 5px 5px #ccc;
-		border-radius: 5px;
-		list-style-type: none;
-		z-index: 10;
-		overflow: hidden;
-	}
-	li {
-		padding: 5px 10px;
-		border-top: 1px solid #000;
-	}
-	li.option {
-		cursor: pointer;
-	}
-	li:first-of-type {
-		border: none;
-	}
-	li.option:hover {
-		background: #5f1f69;
-		color: #fff;
 	}
 	div.container > div:first-of-type {
 		text-align: center;

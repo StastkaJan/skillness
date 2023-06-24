@@ -93,8 +93,10 @@
 		<a href="/predmety">Předměty</a>
 		{#if user?.email}
 			<div>
-				<Person />
-				<a href="/profil">Profil</a>
+				<a href="/profil">
+					<Person />
+					Profil
+				</a>
 			</div>
 			<button on:click={logout}>Odhlásit se</button>
 		{:else}
@@ -149,6 +151,10 @@
 	div {
 		display: flex;
 		position: relative;
+	}
+	a {
+		display: flex;
+		align-items: center;
 	}
 
 	@media (max-width: 800px) {
