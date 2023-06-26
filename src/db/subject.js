@@ -26,9 +26,9 @@ export const getSubjects = async () => {
 	try {
 		const res = await db.query(
 			`
-      SELECT ${dbName}.id as id, ${dbName}.name as name, description, ident, faculty.name as faculty
+      SELECT ${dbName}.id as id, ${dbName}.name as name, description, ident, faculty.name as faculty, faculty.id as facultyid, faculty.uni as uni
         FROM ${dbName}
-				JOIN faculty ON ${dbName}.faculty = faculty.id
+					JOIN faculty ON ${dbName}.faculty = faculty.id
       `,
 			[]
 		)

@@ -5,8 +5,8 @@
 
 	export let data = {}
 
-	let selectedUni = data?.uni || 0,
-		selectedFaculty = data?.faculty || 0
+	let selectedUni = data?.uni || '',
+		selectedFaculty = data?.faculty || ''
 
 	onMount(() => {
 		$headerBg = true
@@ -53,7 +53,7 @@
 	</section>
 
 	<form class="filter" action="" method="GET">
-		<input type="hidden" name="search" placeholder="Matematika" value={data?.search} />
+		<input type="hidden" name="search" value={data?.search} />
 		<div>
 			<label for="uni">Univerzita</label>
 			<select name="uni" id="uni" on:change={e => (selectedUni = e.target.value)}>
@@ -103,6 +103,7 @@
 				}
 			}}
 		>
+			<input type="hidden" name="search" value={data?.search} />
 			<input type="hidden" name="offset" value={data.offset + 1} />
 			<input type="hidden" name="faculty" value={data?.faculty} />
 			<input type="hidden" name="uni" value={data?.uni} />
@@ -163,6 +164,9 @@
 	.notfound {
 		margin: 50px;
 		font-size: 2em;
+	}
+	form > div {
+		width: 150px;
 	}
 	form {
 		width: fit-content;

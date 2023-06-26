@@ -155,7 +155,7 @@
 	}
 	:global(section) {
 		margin: auto;
-		padding: 100px 5vw;
+		padding: 100px 10px;
 		max-width: 1250px;
 	}
 	:global(section:first-of-type) {
@@ -167,9 +167,7 @@
 		justify-content: space-between;
 		min-height: 100vh;
 	}
-	@media (max-width: 800px) {
-		:global(section) {
-			padding: 50px 5vw;
-		}
+	:global(section) {
+		padding: 50px 10px;
 	}
 </style>

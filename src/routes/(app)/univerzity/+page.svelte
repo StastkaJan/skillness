@@ -133,7 +133,6 @@
 		display: flex;
 		justify-content: center;
 		flex-wrap: wrap;
-		justify-content: center;
 		align-items: center;
 		text-align: center;
 		background: linear-gradient(120deg, #5f1f69 5%, #341de1 65%, #00d5ff 110%);
@@ -155,7 +154,7 @@
 	.content {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 50px;
+		justify-content: center;
 		max-width: 1200px;
 		margin: auto;
 	}

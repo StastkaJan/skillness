@@ -21,26 +21,50 @@ export const getAllTeachers = async () => {
 	}
 }
 
-export const getAllTeachersWhere = async (text = '', sbjid = '') => {
+export const getAllTeachersWhere = async (
+	text = '',
+	price = 1000,
+	subject = 0,
+	faculty = 0,
+	uni = 0
+) => {
 	let db = new DBConnection()
 
 	try {
 		let res = await db.query(
 			`
-				SELECT name, bio, img, site, AVG(price) as price, AVG(score) as score
+				SELECT "user".name, bio, img, site, AVG(price) as price, AVG(score) as score
 				FROM ${dbName}
         	LEFT JOIN public."user" ON public."user".id = ${dbName}.id
 					LEFT JOIN teaching ON teaching.teacher = ${dbName}.id
 					LEFT JOIN timetable ON timetable.teacher = ${dbName}.id
 					LEFT JOIN lesson ON lesson.timetable = timetable.id
 					LEFT JOIN review ON review.lesson = lesson.id
-        WHERE LOWER(public."user".name) like LOWER($1)
+					JOIN subject ON subject.id = teaching.subject
+					JOIN faculty ON faculty.id = subject.faculty
+        WHERE (LOWER(public."user".name) LIKE LOWER($1)
+					OR LOWER(bio) LIKE LOWER($1))
 					AND ${dbName}.active like 'T'
-					${sbjid ? 'AND teaching.subject = $2' : ''}
-				GROUP BY name, bio, img, site, "user".id
+					${
+						subject
+							? 'AND teaching.subject = $3'
+							: faculty
+							? 'AND subject.faculty = $3'
+							: uni
+							? 'AND faculty.uni = $3'
+							: ''
+					}
+				GROUP BY "user".name, bio, img, site, "user".id
+				HAVING AVG(price) < $2
 				ORDER BY (SELECT ranking("user".id)) DESC
 				`,
-			sbjid ? [`%${text}%`, sbjid] : [`%${text}%`]
+			subject
+				? [`%${text}%`, price, subject]
+				: faculty
+				? [`%${text}%`, price, faculty]
+				: uni
+				? [`%${text}%`, price, uni]
+				: [`%${text}%`, price]
 		)
 		return res?.rows
 	} catch (err) {
