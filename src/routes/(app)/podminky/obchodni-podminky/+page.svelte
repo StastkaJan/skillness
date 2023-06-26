@@ -115,8 +115,10 @@
 						<li>jméno a příjmení,</li>
 						<li>e-mailová adresa,</li>
 						<li>fotografie obličeje,</li>
-						<li>stručný sebe prezentující text včetně informací o vzdělání, získané praxi,</li>
-						<li>vysvědčení a certifikáty</li>
+						<li>
+							stručný sebe prezentující text včetně informací o vzdělání, získané praxi, vysvědčení
+							a certifikáty,
+						</li>
 						<li>určení předmětů, ve kterých nabízí doučovatel doučování,</li>
 						<li>určení lokality, pokud doučovatel poskytuje doučování osobně nebo online.</li>
 					</ul>
@@ -168,18 +170,12 @@
 					rozhoduje o tom, na jaké pozici se doučovatel umístí. Zvýhodněnou pozici získá doučovatel
 					podle toho:
 					<ul>
-						<li>
-							zda je nově registrovaný nebo ne (noví Doučovatelé mají vždy zvýhodněnou pozici, aby
-							je Studenti našli);
-						</li>
-						<li>na kolik procent má vyplněný profil;</li>
+						<li>zda je nově registrovaný (noví Doučovatelé mají vždy zvýhodněnou pozici);</li>
+						<li>zda má nastavenou profilovou fotografii;</li>
+						<li>kolik má volných míst v rozvrhu;</li>
 						<li>zda má reference od Studentů;</li>
 						<li>
-							jak má nastavený status (doučovatel může ovlivnit viditelnost své profilové stránky);
-						</li>
-						<li>
-							jaký je zájem ze strany Studentů, tj počet Studentů, kteří v relevantním období
-							oslovili Doučovatele.
+							jak má nastavený status (doučovatel může ovlivnit viditelnost své profilové stránky).
 						</li>
 					</ul>
 				</li>
@@ -205,16 +201,6 @@
 					opakované udělení souhlasů nevyžadujeme.
 				</li>
 				<li>
-					Při registraci vyžadujeme od Studenta vyplnění registračních údajů a potvrzení zaškrtnutím
-					políčka "Přečetl/a jsem si Obchodní podmínky a Prohlášení o ochraně osobních údajů a
-					souhlasím s nimi." a kliknutím na tlačítko "Registrovat" dává doučovatel bezvýhradný
-					souhlas s těmito Podmínkami a potvrzuje, že je starší 16 let. Tím nám Student uděluje svůj
-					bezvýhradný souhlas s těmito Podmínkami a zpracováním osobních údajů. V případě, že
-					Student souhlas podle předchozí věty neudělí, není oprávněn portál využívat a nebude mu
-					povolena registrace. Po registraci zašleme Studentovi aktivační email, který musí Student
-					potvrdit, čímž je registrace úspěšně dokončena.
-				</li>
-				<li>
 					Pro vytvoření profilu a registraci požadujeme od Studenta následující:<br />
 					povinné údaje:
 					<ul>
@@ -232,21 +218,11 @@
 					Podmínkami.
 				</li>
 				<li>
-					Na žádost Studenta adresovanou na xxx@xxx.com bude profil neprodleně zrušen. Tím není
+					Na žádost Studenta adresovanou na info@skillnes.cz bude profil neprodleně zrušen. Tím není
 					vyloučena možnost opětovné registrace.
 				</li>
 			</ol>
 		</li>
-		<!-- <li>
-			Podmínky využívání portálu Studenty
-			<ol>
-				<li>
-					Student při hledání doučování může prohledávat profily Doučovatelů a poté kontaktovat
-					konkrétního Doučovatele.
-				</li>
-				<li>Kontaktovat Doučovatele může Student pomocí chatu přes platformu Skillnes.cz</li>
-			</ol>
-		</li> -->
 	</ol>
 	<h2>Notifikace</h2>
 	<ol>
@@ -254,12 +230,12 @@
 			Aby portál Skillnes.cz fungoval efektivně je nezbytné, aby byli Doučovatelé a Studenti v
 			aktivním spojení. Proto je o dění na portálu a na jejich osobním profilu průběžně informujeme,
 			a aby nezapomněli, zasíláme jim upozornění tzv. notifikace. Notifikaci posíláme na Uživatelův
-			mail.
+			email.
 		</li>
 		<li>
 			Doučovatelovi posíláme zejména registrační email (dokončení registrace potvrzením doručení
 			našeho registračního mailu), notifikaci o dění na portálu (informace o aktualizacích,
-			zlepšeních nebo nových službách) nebo notifikaci o platbě.
+			zlepšeních nebo nových službách) nebo registracích na doučování.
 		</li>
 	</ol>
 	<h2>Fungování portálu Skillnes.cz</h2>
@@ -305,13 +281,13 @@
 			<ul>
 				<li>
 					přísné – pokud Student zruší hodinu méně než 24 hod. před jejím začátkem nebo se student
-					nedostaví na hodinu, doučovatel má nárok na 100% dohodnuté odměny
+					nedostaví na hodinu, doučovatel má nárok na 100% dohodnuté odměny,
 				</li>
 				<li>
 					mírné – pokud Student zruší hodinu méně než 24 hod. před jejím začátkem nebo se student
-					nedostaví na hodinu, doučovatel má nárok na 50% dohodnuté odměny
+					nedostaví na hodinu, doučovatel má nárok na 50% dohodnuté odměny,
 				</li>
-				<li>flexibilní – hodinu může Student zrušit kdykoliv a budou mu navráceny peníze zpět</li>
+				<li>flexibilní – hodinu může Student zrušit kdykoliv a budou mu navráceny peníze zpět.</li>
 			</ul>
 		</li>
 		<li>
@@ -421,7 +397,7 @@
 		<li>
 			Odpovědnost Provozovatele se vztahuje výlučně na škodu způsobenou porušením povinností
 			vyplívajících z těchto Podmínek. Provozovatel nese odpovědnost zejména za řádné a včasné
-			plnění odměny
+			plnění odměny.
 		</li>
 		<li>
 			Nejvyšší hranice naší odpovědnosti vůči uživateli za škody vzniklé v souvislosti s porušením
@@ -454,7 +430,7 @@
 			Bez souborů cookies by prohlížen našeho webu bylo mnohem složitější. Soubory „cookies“ nám
 			mimo jiné pomáhají přizpůsobit naši nabídku právě vašim potřebám.
 		</li>
-		<li>
+		<!-- <li>
 			Při navštívení naší webové stránky se Vám zobrazí informace, že v rámci poskytování Služeb
 			používáme cookies a že pokračováním v návštěvě webu udělujete souhlas s jejich používáním.
 			Pokud souhlas neudělíte, je možné, že se vám některé části naší webové stránky nebudou
@@ -467,7 +443,7 @@
 			informacemi obsaženými v souborech cookies, avšak pouze za účelem zkvalitnění našich Služeb,
 			které tak budou více odpovídat vašim individuálním požadavkům a potřebám. Vaše osobní údaje
 			chráníme v souladu s Podmínkami ochrany osobních údajů, které najdete zde odkaz na podmínky
-		</li>
+		</li> -->
 	</ol>
 	<h2>Závěrečná ustanovení</h2>
 	<ol>
@@ -476,7 +452,7 @@
 			jsou pro Uživatele závazné dnem jejich účinnosti Veškeré změny těchto Podmínek nabývají
 			účinnosti dnem jejich zveřejnění na internetové stránce www.Skillnes.cz. Provozovatel je
 			povinen změnu podmínek vhodným způsobem zveřejnit před nabytím účinnosti změn Podmínek. Tyto
-			Podmínky nabývají účinnosti dne 14. 02. 2023.
+			Podmínky nabývají účinnosti dne 14. 05. 2023.
 		</li>
 	</ol>
 </div>

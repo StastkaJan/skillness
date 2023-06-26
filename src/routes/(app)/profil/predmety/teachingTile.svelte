@@ -34,6 +34,13 @@
 			maximumFractionDigits: 0
 		}).format(teach.price)}
 	</p>
+	<p>
+		Obdržíš: {new Intl.NumberFormat('cs-CZ', {
+			style: 'currency',
+			currency: 'CZK',
+			maximumFractionDigits: 0
+		}).format((1 - 0.05) * teach.price)}
+	</p>
 </div>
 
 <style>

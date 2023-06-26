@@ -1,5 +1,7 @@
 <script>
 	import Logo from '$icon/logoTransparent.svelte'
+	import insta from '$img/insta.png'
+	import fb from '$img/fb.png'
 
 	let timestamp = new Date().getFullYear()
 </script>
@@ -7,8 +9,18 @@
 <footer>
 	<div class="footer">
 		<h2>
-			<Logo fill={'#fff'} />
-			Skillnes
+			<div>
+				<Logo fill={'#fff'} />
+				Skillnes
+			</div>
+			<div>
+				<a href="https://www.instagram.com/skillnes.cz/">
+					<img src={insta} alt="Instagram" width="48" height="48" />
+				</a>
+				<a href="#">
+					<img src={fb} alt="Facebook" width="48" height="48" />
+				</a>
+			</div>
 		</h2>
 		<div>
 			<div>
@@ -75,7 +87,15 @@
 	h2 {
 		display: flex;
 		align-items: center;
+		justify-content: space-between;
 		border-bottom: 2px solid;
+	}
+	h2 > div:first-of-type {
+		display: flex;
+		align-items: center;
+	}
+	h2 a {
+		display: inline-block;
 	}
 	.footer {
 		padding: 10px;
