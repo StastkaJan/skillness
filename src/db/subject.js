@@ -77,29 +77,37 @@ export const searchSubject = async (name = '') => {
 	}
 }
 
-export const getAllSubjectsOpt = async opt => {
+export const getAllSubjectsOpt = async (
+	faculty = 0,
+	uni = 0,
+	search = '',
+	offset = 0,
+	limit = 20
+) => {
 	let db = new DBConnection()
 
 	try {
-		let res
-		if (!opt.get('faculty')) {
-			res = await db.query(
-				`
-				SELECT * 
+		let res = await db.query(
+			`
+				SELECT ${dbName}.id as id, faculty, ${dbName}.name as name, description, ident, COUNT(${dbName}.id) as rows, faculty.name as facultyname, uni.id as uni
 					FROM ${dbName}
+						JOIN faculty ON faculty.id = ${dbName}.faculty
+						JOIN uni ON faculty.uni = uni.id
+					WHERE (LOWER(${dbName}.name) LIKE LOWER($1)
+						OR LOWER(ident) LIKE LOWER($1)
+						OR LOWER(description) LIKE LOWER($1))
+						${faculty ? 'AND faculty IN ($4)' : uni ? 'AND faculty.uni IN ($4)' : ''}
+					GROUP BY ${dbName}.id, faculty, ${dbName}.name, description, ident, faculty.name, uni.id
+					ORDER BY ${dbName}.name
+					LIMIT $3
+					OFFSET $2
 				`,
-				[]
-			)
-		} else {
-			res = await db.query(
-				`
-				SELECT *
-					FROM ${dbName}
-				WHERE faculty = $1
-				`,
-				[opt.get('faculty')]
-			)
-		}
+			faculty
+				? [`%${search}%`, offset, limit, faculty]
+				: uni
+				? [`%${search}%`, offset, limit, uni]
+				: [`%${search}%`, offset, limit]
+		)
 		return res?.rows
 	} catch (err) {
 		console.log(err)

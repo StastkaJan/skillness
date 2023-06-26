@@ -26,6 +26,24 @@ export const getUnis = async (search = '', offset = 0, limit = 20) => {
 	}
 }
 
+export const getAllUnis = async () => {
+	let db = new DBConnection()
+
+	try {
+		const res = await db.query(
+			`
+      SELECT id, name, shortname
+        FROM ${dbName}
+      `,
+			[]
+		)
+		return res?.rows
+	} catch (err) {
+		console.log(err)
+		throw err
+	}
+}
+
 export const getUni = async (id = '') => {
 	let db = new DBConnection()
 

@@ -8,9 +8,9 @@ export const getFaculties = async () => {
 	try {
 		const res = await db.query(
 			`
-      SELECT ${dbName}.name, ${dbName}.shortname, ${dbName}.id, uni.name as uni
+      SELECT ${dbName}.name, ${dbName}.shortname, ${dbName}.id, uni.name as uni, ${dbName}.uni as uniid
         FROM ${dbName}
-				JOIN uni ON uni.id = ${dbName}.uni
+					JOIN uni ON uni.id = ${dbName}.uni
       `,
 			[]
 		)
@@ -21,7 +21,7 @@ export const getFaculties = async () => {
 	}
 }
 
-export const getFaculty = async () => {
+export const getFaculty = async (id = 0) => {
 	let db = new DBConnection()
 
 	try {
@@ -29,9 +29,10 @@ export const getFaculty = async () => {
 			`
       SELECT ${dbName}.name, ${dbName}.shortname, ${dbName}.id, uni.name
         FROM ${dbName}
-				JOIN uni ON uni.id = ${dbName}.uni
+					JOIN uni ON uni.id = ${dbName}.uni
+				WHERE ${dbName}.id = $1
       `,
-			[]
+			[id]
 		)
 		return res?.rows
 	} catch (err) {

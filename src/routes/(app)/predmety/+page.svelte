@@ -5,6 +5,9 @@
 
 	export let data = {}
 
+	let selectedUni = data?.uni || 0,
+		selectedFaculty = data?.faculty || 0
+
 	onMount(() => {
 		$headerBg = true
 	})
@@ -21,7 +24,7 @@
 				type: result.result
 			}
 		} else if (result.result === 'success') {
-			data.unis = data.unis.concat(result.data)
+			data.subjects = data.subjects.concat(result.data)
 			data.offset = result.offset
 		}
 	}
@@ -41,11 +44,42 @@
 		<div>
 			<h1>Přehled předmětů<span>Najdi předmět, který ti moc nejde</span></h1>
 
-			<form action="?/searchUnis" method="GET">
+			<form action="" method="GET">
 				<input type="search" name="search" placeholder="Matematika" value={data?.search} />
+				<input type="hidden" name="faculty" value={selectedFaculty} />
+				<input type="hidden" name="uni" value={selectedUni} />
 			</form>
 		</div>
 	</section>
+
+	<form class="filter" action="" method="GET">
+		<input type="hidden" name="search" placeholder="Matematika" value={data?.search} />
+		<div>
+			<label for="uni">Univerzita</label>
+			<select name="uni" id="uni" on:change={e => (selectedUni = e.target.value)}>
+				<option value="" label="Zvolit univerzitu" />
+				{#each data?.unis as uni}
+					<option value={uni.id} label={uni.name} selected={uni.id == selectedUni} />
+				{/each}
+			</select>
+		</div>
+		<div>
+			<label for="faculty">Fakulta</label>
+			<select name="faculty" id="faculty" on:change={e => (selectedFaculty = e.target.value)}>
+				<option value="" label="Zvolit fakultu" />
+				{#each data?.faculties as faculty}
+					{#if faculty.uniid == selectedUni || selectedUni == ''}
+						<option
+							value={faculty.id}
+							label={faculty.name}
+							selected={faculty.id == data?.faculty}
+						/>
+					{/if}
+				{/each}
+			</select>
+		</div>
+		<button>Použít</button>
+	</form>
 
 	<div class="subjects">
 		{#each data?.subjects as subject}
@@ -54,11 +88,11 @@
 				<p>{subject.description}</p>
 			</a>
 		{:else}
-			<p>Nic nenalezeno</p>
+			<p class="notfound">Nic nenalezeno</p>
 		{/each}
 	</div>
 
-	{#if data.unis[0]?.rows > 20 * (data.offset + 1)}
+	{#if data.subjects[0]?.rows > 20 * (data.offset + 1)}
 		<form
 			action="?/loadMore"
 			method="POST"
@@ -70,6 +104,8 @@
 			}}
 		>
 			<input type="hidden" name="offset" value={data.offset + 1} />
+			<input type="hidden" name="faculty" value={data?.faculty} />
+			<input type="hidden" name="uni" value={data?.uni} />
 			<button class="button">Zobrazit další</button>
 		</form>
 	{/if}
@@ -99,6 +135,12 @@
 	input {
 		padding: 0.7em;
 	}
+	form.filter {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		margin: 20px auto;
+	}
 	.subjects {
 		display: flex;
 		flex-wrap: wrap;
@@ -118,6 +160,10 @@
 	.subjects > a:hover {
 		box-shadow: inset 0 0 10px #ccc;
 	}
+	.notfound {
+		margin: 50px;
+		font-size: 2em;
+	}
 	form {
 		width: fit-content;
 		margin: auto;
@@ -130,5 +176,10 @@
 		border: none;
 		border-radius: 5px;
 		outline: none;
+	}
+	@media (max-width: 800px) {
+		form.filter {
+			flex-direction: column;
+		}
 	}
 </style>

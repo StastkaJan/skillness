@@ -2,11 +2,12 @@
 	import { popup } from '$store/clientStore.js'
 
 	export let faculties = [
-		{
-			name: '',
-			id: ''
-		}
-	]
+			{
+				name: '',
+				id: ''
+			}
+		],
+		uni = ''
 
 	const destroy = () => {
 		popup.set({
@@ -19,7 +20,7 @@
 
 <div>
 	{#each faculties as { id, name }}
-		<a href="/predmety?faculty={id}" on:click={destroy}>{name}</a>
+		<a href="/predmety?uni={uni}&faculty={id}" on:click={destroy}>{name}</a>
 	{/each}
 </div>
 

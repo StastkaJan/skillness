@@ -1,9 +1,9 @@
 import { getUnis } from '$db/uni'
 
-let search
+let search = ''
 
 export const load = async ({ locals, url }) => {
-	search = url?.searchParams?.get('search')
+	search = url?.searchParams?.get('search') || ''
 	let unis = await getUnis(search || '', 0, 20)
 
 	return {

@@ -38,7 +38,8 @@
 					title: 'Zvol si fakultu',
 					component: FacultiesList,
 					props: {
-						faculties: resJson.faculty
+						faculties: resJson.faculty,
+						uni
 					}
 				}
 			}
@@ -130,6 +131,7 @@
 	section:first-of-type {
 		position: relative;
 		display: flex;
+		justify-content: center;
 		flex-wrap: wrap;
 		justify-content: center;
 		align-items: center;
