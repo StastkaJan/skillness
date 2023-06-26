@@ -1,4 +1,5 @@
 <script>
+	import { enhance } from '$app/forms'
 	import { onDestroy } from 'svelte'
 	import placeholder from '$img/placeholder.png'
 	import { notification, loading, popup, headerBg } from '$store/clientStore.js'
@@ -51,6 +52,19 @@
 			$loading = false
 		}
 	}
+
+	function handleResult(result) {
+		$loading = false
+		if (result.result === 'error') {
+			$notification = {
+				text: result.text,
+				type: result.result
+			}
+		} else if (result.result === 'success') {
+			data.unis = data.unis.concat(result.data)
+			data.offset = result.offset
+		}
+	}
 </script>
 
 <svelte:head>
@@ -67,7 +81,9 @@
 		<div>
 			<h1>Přehled univerzit<span>Najdi univerzitu, na které studuješ</span></h1>
 
-			<input type="search" placeholder="Univerzita Karlova" />
+			<form action="?/searchUnis" method="GET">
+				<input type="search" name="search" placeholder="Univerzita Karlova" value={data?.search} />
+			</form>
 		</div>
 	</section>
 
@@ -89,9 +105,25 @@
 				<h2>{uni.name}</h2>
 			</div>
 		{:else}
-			<p>Nic nenalezeno.</p>
+			<p class="notfound">Nic nenalezeno.</p>
 		{/each}
 	</div>
+
+	{#if data.unis[0]?.rows > 20 * (data.offset + 1)}
+		<form
+			action="?/loadMore"
+			method="POST"
+			use:enhance={() => {
+				$loading = true
+				return async ({ result }) => {
+					handleResult(result.data)
+				}
+			}}
+		>
+			<input type="hidden" name="offset" value={data.offset + 1} />
+			<button class="button">Zobrazit další</button>
+		</form>
+	{/if}
 </main>
 
 <style>
@@ -146,5 +178,22 @@
 	.content > div h2 {
 		margin-top: 0;
 		text-align: center;
+	}
+	.notfound {
+		margin: 50px;
+		font-size: 2em;
+	}
+	form {
+		width: fit-content;
+		margin: auto;
+	}
+	button {
+		height: 40px;
+		color: #fff;
+		font-weight: bold;
+		background: #000;
+		border: none;
+		border-radius: 5px;
+		outline: none;
 	}
 </style>

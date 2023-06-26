@@ -2,16 +2,22 @@ import { DBConnection } from './dbConnect'
 
 let dbName = 'uni'
 
-export const getUnis = async () => {
+export const getUnis = async (search = '', offset = 0, limit = 20) => {
 	let db = new DBConnection()
 
 	try {
 		const res = await db.query(
 			`
-      SELECT id, name, shortname, logo
+      SELECT id, name, shortname, logo, COUNT(id) as rows
         FROM ${dbName}
+					WHERE LOWER(name) LIKE LOWER($1)
+						OR LOWER(shortname) LIKE LOWER($1)
+				GROUP BY id, name, shortname, logo
+				ORDER BY name
+				LIMIT $3
+				OFFSET $2
       `,
-			[]
+			[`%${search}%`, offset, limit]
 		)
 		return res?.rows
 	} catch (err) {

@@ -1,6 +1,7 @@
 <script>
+	import { enhance } from '$app/forms'
 	import { onDestroy, onMount } from 'svelte'
-	import { headerBg } from '$store/clientStore.js'
+	import { notification, loading, headerBg } from '$store/clientStore.js'
 
 	export let data = {}
 
@@ -12,7 +13,18 @@
 		$headerBg = false
 	})
 
-	let search = ''
+	function handleResult(result) {
+		$loading = false
+		if (result.result === 'error') {
+			$notification = {
+				text: result.text,
+				type: result.result
+			}
+		} else if (result.result === 'success') {
+			data.unis = data.unis.concat(result.data)
+			data.offset = result.offset
+		}
+	}
 </script>
 
 <svelte:head>
@@ -29,22 +41,38 @@
 		<div>
 			<h1>Přehled předmětů<span>Najdi předmět, který ti moc nejde</span></h1>
 
-			<input type="search" placeholder="Matematika" bind:value={search} />
+			<form action="?/searchUnis" method="GET">
+				<input type="search" name="search" placeholder="Matematika" value={data?.search} />
+			</form>
 		</div>
 	</section>
 
 	<div class="subjects">
 		{#each data?.subjects as subject}
-			{#if search.length <= 0}
-				<a href="/doucujici?subject={subject.id}">
-					<h3>{subject.name}</h3>
-					<p>{subject.description}</p>
-				</a>
-			{/if}
+			<a href="/doucujici?subject={subject.id}">
+				<h3>{subject.name}</h3>
+				<p>{subject.description}</p>
+			</a>
 		{:else}
 			<p>Nic nenalezeno</p>
 		{/each}
 	</div>
+
+	{#if data.unis[0]?.rows > 20 * (data.offset + 1)}
+		<form
+			action="?/loadMore"
+			method="POST"
+			use:enhance={() => {
+				$loading = true
+				return async ({ result }) => {
+					handleResult(result.data)
+				}
+			}}
+		>
+			<input type="hidden" name="offset" value={data.offset + 1} />
+			<button class="button">Zobrazit další</button>
+		</form>
+	{/if}
 </main>
 
 <style>
@@ -89,5 +117,18 @@
 	}
 	.subjects > a:hover {
 		box-shadow: inset 0 0 10px #ccc;
+	}
+	form {
+		width: fit-content;
+		margin: auto;
+	}
+	button {
+		height: 40px;
+		color: #fff;
+		font-weight: bold;
+		background: #000;
+		border: none;
+		border-radius: 5px;
+		outline: none;
 	}
 </style>

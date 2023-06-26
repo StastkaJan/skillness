@@ -107,30 +107,32 @@
 				{/if}
 			</div>
 			<!-- <Timetable {timetable} title="Volný čas učitele" /> -->
-			<div class="reviews">
-				<h2>Recenze</h2>
-				<div class:open={subjectsOpen}>
-					{#each reviews as { score, description, name }}
-						<div>
-							<h3>
-								{name}
-								<div class="stars">
-									{#each { length: score } as _, i}
-										<span>&starf;</span>
-									{/each}
-									{#each { length: 5 - score } as _, i}
-										<span>&star;</span>
-									{/each}
-								</div>
-							</h3>
-							<p>{description}</p>
-						</div>
-					{/each}
+			{#if reviews.length > 0}
+				<div class="reviews">
+					<h2>Recenze</h2>
+					<div class:open={subjectsOpen}>
+						{#each reviews as { score, description, name }}
+							<div>
+								<h3>
+									{name}
+									<div class="stars">
+										{#each { length: score } as _, i}
+											<span>&starf;</span>
+										{/each}
+										{#each { length: 5 - score } as _, i}
+											<span>&star;</span>
+										{/each}
+									</div>
+								</h3>
+								<p>{description}</p>
+							</div>
+						{/each}
+					</div>
+					{#if reviews.length > 4}
+						<button on:click={moreSubjects}>Zobrazit více</button>
+					{/if}
 				</div>
-				{#if reviews.length > 4}
-					<button on:click={moreSubjects}>Zobrazit více</button>
-				{/if}
-			</div>
+			{/if}
 			{#if $page.data.user?.email !== teacher.email}
 				<div>
 					<button on:click={registerLecture}>Přihlásit se k hodině</button>
