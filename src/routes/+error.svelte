@@ -152,7 +152,7 @@
 	}
 	:global(section) {
 		margin: auto;
-		padding: 100px 5vw;
+		padding: 100px 10px;
 		max-width: 1250px;
 	}
 	:global(section:first-of-type) {
@@ -166,7 +166,7 @@
 	}
 	@media (max-width: 800px) {
 		:global(section) {
-			padding: 50px 5vw;
+			padding: 50px 10px;
 		}
 	}
 	main {
