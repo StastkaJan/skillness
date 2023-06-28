@@ -56,6 +56,14 @@ export const actions = {
 			return returnObj
 		}
 
+		if (lessonExist[0].review != null) {
+			let returnObj = {
+				result: 'error',
+				text: 'Hodina již byla ohodnocena'
+			}
+			return returnObj
+		}
+
 		if (new Date(lessonExist[0].start) > new Date()) {
 			let returnObj = {
 				result: 'error',

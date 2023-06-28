@@ -10,10 +10,11 @@ export const getLesson = async (id = 0) => {
 	try {
 		const res = await db.query(
 			`
-      SELECT lesson.id as id, timetable.teacher as teacher, "user".email as userEmail, "user".id as user, timetable.start as start, status
+      SELECT lesson.id as id, timetable.teacher as teacher, "user".email as userEmail, "user".id as user, timetable.start as start, status, review.id as review
         FROM ${dbName}
 					JOIN timetable ON timetable.id = ${dbName}.timetable
 					JOIN "user" ON "user".id = lesson."user"
+					LEFT JOIN review ON review.lesson = lesson.id
         WHERE lesson.id = $1
     	`,
 			[id]
@@ -32,13 +33,14 @@ export const getUserLessons = async (userId = 0) => {
 	try {
 		const res = await db.query(
 			`
-      SELECT lesson.id as id, timetable.start as start, "user".name as teacher, subject.name as subject, status, site
+      SELECT lesson.id as id, timetable.start as start, "user".name as teacher, subject.name as subject, status, site, review.id as review
         FROM ${dbName}
           LEFT JOIN timetable ON timetable.id = ${dbName}.timetable
           LEFT JOIN teacher ON teacher.id = timetable.teacher
           LEFT JOIN "user" ON "user".id = timetable.teacher
           LEFT JOIN teaching ON teaching.id = ${dbName}.teaching
 					LEFT JOIN subject ON teaching.subject = subject.id
+					LEFT JOIN review ON review.lesson = lesson.id
         WHERE lesson."user" = $1
 				ORDER BY timetable.start
     	`,

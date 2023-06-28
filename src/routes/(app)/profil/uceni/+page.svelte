@@ -30,7 +30,7 @@
 		</p>
 	</div>
 	<div class="tiles">
-		{#each lessons as { id, start, teacher, subject, status, site }}
+		{#each lessons as { id, start, teacher, subject, status, site, review }}
 			<div class="tile">
 				<h3>{subject}</h3>
 				<small>
@@ -48,9 +48,9 @@
 				{:else if status === 'F'}
 					<p>Hodina byla odmítnuta</p>
 				{:else}
-					<p>Hodina je přijatá</p>
+					<p>Hodina byla přijata</p>
 				{/if}
-				{#if status === 'T' && new Date(start) < new Date()}
+				{#if status === 'T' && new Date(start) < new Date() && review == null}
 					<div class="buttons">
 						<button
 							class="button"

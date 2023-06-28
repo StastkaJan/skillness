@@ -121,51 +121,53 @@
 	<div>
 		<h2>Historie plateb</h2>
 		{#if data?.payments?.length > 0}
-			<table>
-				<tr>
-					<th>Datum</th>
-					<th>Zdroj</th>
-					<th>Částka</th>
-					<th>Stav</th>
-				</tr>
-				{#each data?.payments as { timestamp, sum, paid, id, lesson }}
+			<div>
+				<table>
 					<tr>
-						<td>
-							{new Date(timestamp).toLocaleString('cs-CZ', {
-								year: 'numeric',
-								month: 'short',
-								day: 'numeric'
-							})}
-						</td>
-						<td>
-							{#if lesson}
-								Doučování
-							{:else}
-								Platba
-							{/if}
-						</td>
-						<td>
-							{Number(sum).toLocaleString('cs-CZ', { style: 'currency', currency: 'CZK' })}
-						</td>
-						<td>
-							{#if paid == 'T'}
-								Zaplaceno
-							{:else if new Date(Number(new Date(timestamp)) + 12096e5) <= new Date() || paid == 'F'}
-								Platba neproběhla
-							{:else}
-								Čeká na zaplacení
-								<button
-									on:click={() => {
-										toPayment(id)
-									}}
-								>
-									Otevřít
-								</button>
-							{/if}
-						</td>
+						<th>Datum</th>
+						<th>Zdroj</th>
+						<th>Částka</th>
+						<th>Stav</th>
 					</tr>
-				{/each}
-			</table>
+					{#each data?.payments as { timestamp, sum, paid, id, lesson }}
+						<tr>
+							<td>
+								{new Date(timestamp).toLocaleString('cs-CZ', {
+									year: 'numeric',
+									month: 'short',
+									day: 'numeric'
+								})}
+							</td>
+							<td>
+								{#if lesson}
+									Doučování
+								{:else}
+									Platba
+								{/if}
+							</td>
+							<td>
+								{Number(sum).toLocaleString('cs-CZ', { style: 'currency', currency: 'CZK' })}
+							</td>
+							<td>
+								{#if paid == 'T'}
+									Zaplaceno
+								{:else if new Date(Number(new Date(timestamp)) + 12096e5) <= new Date() || paid == 'F'}
+									Platba neproběhla
+								{:else}
+									Čeká na zaplacení
+									<button
+										on:click={() => {
+											toPayment(id)
+										}}
+									>
+										Otevřít
+									</button>
+								{/if}
+							</td>
+						</tr>
+					{/each}
+				</table>
+			</div>
 		{:else}
 			<p>Žádné proběhlé platby</p>
 		{/if}
@@ -173,12 +175,16 @@
 </div>
 
 <style>
+	h2 {
+		text-align: center;
+	}
 	div.container,
 	div.overview {
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: center;
 		align-items: center;
+		padding: 5px;
 	}
 	div.container {
 		gap: 50px;
@@ -218,6 +224,10 @@
 	}
 	.overview button {
 		width: 100%;
+	}
+	.container > div:nth-of-type(3) > div {
+		max-width: 98vw;
+		overflow: auto;
 	}
 	table button {
 		width: unset;

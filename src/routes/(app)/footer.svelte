@@ -132,7 +132,7 @@
 		color: #fff;
 	}
 	@media (max-width: 800px) {
-		.footer div {
+		.footer > div {
 			gap: 50px;
 		}
 	}
