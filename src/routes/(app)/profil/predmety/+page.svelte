@@ -150,6 +150,7 @@
 	.container > div.tiles {
 		display: flex;
 		flex-wrap: wrap;
+		justify-content: center;
 		gap: 50px;
 		margin: 100px auto 50px;
 	}

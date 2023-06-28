@@ -82,6 +82,10 @@
 		max-width: 700px;
 		margin: 1em auto;
 	}
+	:global(h1),
+	:global(p) {
+		text-align: center;
+	}
 	:global(a),
 	:global(a:visited) {
 		color: #000;

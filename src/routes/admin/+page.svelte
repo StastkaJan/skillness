@@ -141,8 +141,9 @@
 		margin: 20px 0;
 	}
 	a {
-		display: flex;
+		width: 135px;
 		padding: 1em 2em;
+		text-align: center;
 		border-radius: 10px;
 		box-shadow: 0 0 10px #ccc;
 		transition: 0.2s;
